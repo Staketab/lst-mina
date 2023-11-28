@@ -1,0 +1,75 @@
+name: Deploy Score
+
+on:
+  pull_request:
+    branches:
+    - staging
+    - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options:
+        - staging
+        - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Checkout GitHub Actions
+      uses: actions/checkout@v3
+      with:
+        repository: Staketab/github-actions
+        path: .github/actions
+        token: ${{ secrets.GH_TOKEN }}
+
+    - name: calculate environment
+      run: |
+        pull_request_branch=${{ github.base_ref }}
+        dispatch_branch=${{ github.event.inputs.environment }}
+        echo "ENVIRONMENT=${pull_request_branch:-$dispatch_branch}" >> $GITHUB_ENV
+
+    - name: Settings
+      uses: kanga333/variable-mapper@v0.2.2
+      id: settings
+      with:
+        key: ${{ env.ENVIRONMENT }}
+        map: |
+          {
+            "^staging$": {
+              "node_env": "development",
+              "webroot": "/var/www/test/score",
+              "ssh_hostname": "${{ secrets.FRONT_SCORE_IP }}",
+              "ssh_password": "${{ secrets.FRONT_SCORE_SSH }}",
+              "lib_latest": "true",
+              "keep_source_maps": "false"
+            },
+            "^main$": {
+              "node_env": "production",
+              "webroot": "/var/www/prod/score",
+              "ssh_hostname": "${{ secrets.FRONT_SCORE_IP }}",
+              "ssh_password": "${{ secrets.FRONT_SCORE_SSH }}",
+              "lib_latest": "false",
+              "keep_source_maps": "false"
+            }
+          }
+        export_to: output,log
+        mode: fill
+
+    - name: Deploy React.js
+      uses: ./.github/actions/frontend-next-deploy-score
+      with:
+        webroot: ${{ steps.settings.outputs.webroot }}
+        ssh_hostname: ${{ steps.settings.outputs.ssh_hostname }}
+        ssh_username: ${{ secrets.SERVER_USERNAME }}
+        ssh_password: ${{ steps.settings.outputs.ssh_password }}
+        lib_latest: ${{ steps.settings.outputs.lib_latest }}
+        keep_source_maps: ${{ steps.settings.outputs.keep_source_maps }}
+        nodejs_version: 16.x
+        github_token: ${{ secrets.GH_TOKEN }}
+      env:
+        REACT_APP_ENVIRONMENT: ${{ steps.settings.outputs.node_env }}
