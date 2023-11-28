@@ -14,6 +14,7 @@ export type TableConfig = {
         isCoinTable?: boolean;
         noRedirect?: boolean;
     };
+    sortBy?: SORT_BY;
     headerText?: string;
     view?: {
         sm: number;

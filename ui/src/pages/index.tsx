@@ -21,7 +21,7 @@ export default function Home() {
         limit,
         orderBy,
         sortBy,
-        actions: { setPage, setLimit, setOrderBy },
+        actions: { setPage, setLimit, setOrderBy, setSortBy },
     } = useTable({ defaultState: { page: 0, limit: 100, orderBy: ORDER_BY.DESC, sortBy: SORT_BY.SCORE } });
 
     const fetchData = async () => {
@@ -89,6 +89,9 @@ export default function Home() {
                     }}
                     onOrderChange={(data) => {
                         setOrderBy(data);
+                    }}
+                    onSortChange={(data) => {
+                        setSortBy(data);
                     }}
                     limitOptions={limitOptions}
                 />

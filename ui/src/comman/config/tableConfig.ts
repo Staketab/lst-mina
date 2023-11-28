@@ -1,4 +1,4 @@
-import { TableConfig } from '../types';
+import { SORT_BY, TableConfig } from '../types';
 
 export const ScoringConfig: TableConfig[] = [
     {
@@ -14,12 +14,13 @@ export const ScoringConfig: TableConfig[] = [
     },
     {
         colName: 'stake',
-        columnTemplate: 'string',
+        columnTemplate: 'amount',
         headerText: 'Stake',
         fields: {
             value: 'stake',
             additionValue: 'protocol',
         },
+        sortBy: SORT_BY.STAKE,
     },
     {
         colName: 'score',
@@ -29,6 +30,7 @@ export const ScoringConfig: TableConfig[] = [
             value: 'score',
             postfix: '%',
         },
+        sortBy: SORT_BY.SCORE,
     },
     {
         colName: 'uptimeBySnark',
