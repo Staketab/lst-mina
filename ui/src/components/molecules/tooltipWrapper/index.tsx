@@ -18,7 +18,7 @@ const TooltipWrapper = ({
     noCloseOnClickInside,
     blackTooltip,
     closeTimeOut,
-}: TooltipWrapperProps) => {
+}: TooltipWrapperProps): JSX.Element => {
     const [show, setShow] = useState(false);
 
     const onOpenTooltip = () => {
@@ -40,30 +40,33 @@ const TooltipWrapper = ({
         onCloseTooltip();
     }, [isLoading]);
 
-    return children
-        ? React.Children.map(children, (el: React.ReactElement<any>) => {
-              return (
-                  <>
-                      {React.cloneElement(el, {
-                          ...el.props,
-                          onMouseEnter: onOpenTooltip,
-                          onMouseLeave: onCloseTooltip,
-                          onClick: onOpenTooltip,
-                      })}
-                      <FloatingTooltip
-                          text={tooltipText}
-                          show={show}
-                          controlRef={controlRef}
-                          onOpenTooltip={onOpenTooltip}
-                          onCloseTooltip={onCloseTooltip}
-                          onClickInside={onClickInside}
-                          noCloseOnClickInside={noCloseOnClickInside}
-                          blackTooltip={blackTooltip}
-                      />
-                  </>
-              );
-          })
-        : null;
+    return (
+        <>
+            {children &&
+                React.Children.map(children, (el: React.ReactElement<any>) => {
+                    return (
+                        <>
+                            {React.cloneElement(el, {
+                                ...el.props,
+                                onMouseEnter: onOpenTooltip,
+                                onMouseLeave: onCloseTooltip,
+                                onClick: onOpenTooltip,
+                            })}
+                            <FloatingTooltip
+                                text={tooltipText}
+                                show={show}
+                                controlRef={controlRef}
+                                onOpenTooltip={onOpenTooltip}
+                                onCloseTooltip={onCloseTooltip}
+                                onClickInside={onClickInside}
+                                noCloseOnClickInside={noCloseOnClickInside}
+                                blackTooltip={blackTooltip}
+                            />
+                        </>
+                    );
+                })}
+        </>
+    );
 };
 
 export default TooltipWrapper;
