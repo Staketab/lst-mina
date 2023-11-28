@@ -69,7 +69,7 @@ jobs:
         ssh_password: ${{ steps.settings.outputs.ssh_password }}
         lib_latest: ${{ steps.settings.outputs.lib_latest }}
         keep_source_maps: ${{ steps.settings.outputs.keep_source_maps }}
-        nodejs_version: 16.x
+        nodejs_version: 18.x
         github_token: ${{ secrets.GH_TOKEN }}
       env:
         REACT_APP_ENVIRONMENT: ${{ steps.settings.outputs.node_env }}
