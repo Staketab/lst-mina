@@ -1,0 +1,144 @@
+.tableComponent {
+    background-color: var(--col-light);
+    border-radius: 9px 9px 0 0;
+}
+
+.bottomPagination {
+    position: static;
+}
+
+.noData {
+    padding-top: 16px;
+}
+
+.wrapper {
+    min-width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.table {
+    min-width: 100%;
+    display: grid;
+}
+
+.cell {
+    position: relative;
+    font-size: 14px;
+    color: var(--col--dark);
+    line-height: 16px;
+    border-bottom: 0.5px solid var(--col--gray8);
+    padding-right: 20px;
+    background-color: var(--col-light);
+    transition: all ease 150ms;
+}
+
+.headerCell {
+    display: flex;
+    background-color: var(--col-light);
+    z-index: 10;
+    padding-right: 20px;
+    border-top: 0.5px solid var(--col--gray8);
+    padding-top: 0;
+    transition: none;
+}
+
+.infoTooltip {
+    margin-right: 4px;
+}
+
+.cellContentWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 14px 0;
+}
+
+.loadingScreen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.noDataNoPagination {
+    padding-top: 0;
+}
+
+.noTransform {
+    text-transform: none;
+}
+
+.borderHeader {
+    border-bottom: none;
+}
+
+.tableFiltersContainer {
+    width: 100%;
+    padding: 16px;
+    border-bottom: 0.5px solid #0000000d;
+}
+
+.headerCellContent {
+    display: flex;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 12px;
+    line-height: 16px;
+    padding: 14px 0;
+    padding-top: 16px;
+}
+
+.headerCellCapitalize {
+    text-transform: capitalize;
+}
+
+.headerCellNoTransform {
+    text-transform: none;
+}
+
+@media (min-width: 1401px) {
+    .headerCell {
+        position: sticky;
+    }
+}
+
+@media (max-width: 1400px) {
+    .wrapper::after {
+        content: '';
+        position: absolute;
+        z-index: 11;
+        top: 1px;
+        right: 0;
+        bottom: 1px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+        width: 15%;
+        transition: all ease 200ms;
+    }
+
+    .warpper {
+        overflow-x: auto;
+        scrollbar-width: 0;
+    }
+    .warpper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .wrapperNoFade::after {
+        content: '';
+        right: 0;
+        position: absolute;
+        width: 3px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    }
+
+    .table {
+        white-space: nowrap;
+        overflow-x: scroll;
+        position: relative;
+        scrollbar-width: 0;
+    }
+
+    .table::-webkit-scrollbar {
+        display: none;
+    }
+}

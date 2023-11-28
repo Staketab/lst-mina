@@ -1,0 +1,20 @@
+.nftImg {
+    object-fit: cover;
+}
+.wrapper {
+    position: relative;
+}
+.iconFirst {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.iconSecond {
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+}

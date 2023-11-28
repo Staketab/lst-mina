@@ -1,0 +1,26 @@
+.customScrollList {
+	display: flex;
+	width: 100%;
+  }
+  
+  .customScrollList::-webkit-scrollbar {
+	width: 6px;
+	height: 3px;
+	border-radius: 10px;
+  }
+  
+  .customScrollList::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 0px solid rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+  }
+  
+  .list {
+	-ms-overflow-style: none;
+	flex-grow: 1;
+  }
+  
+  .list::-webkit-scrollbar {
+	width: 0;
+  }
+  

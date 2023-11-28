@@ -1,0 +1,4 @@
+public/legacy/**/*.css
+public/normalize.css
+public/brands/**/theme.css
+storybook-static

@@ -1,0 +1,22 @@
+.singleSelect {
+    position: relative;
+}
+
+.dropdown {
+    padding: 0;
+    border-radius: 7px;
+}
+
+.item {
+    color: #000000cc;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 12px;
+    background-color: #fff;
+    transition: all ease 200ms;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #f9f9f9;
+}
