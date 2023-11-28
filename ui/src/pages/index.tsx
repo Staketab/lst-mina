@@ -22,7 +22,7 @@ export default function Home() {
         orderBy,
         sortBy,
         actions: { setPage, setLimit, setOrderBy },
-    } = useTable({ defaultState: { page: 0, limit: 100, orderBy: ORDER_BY.DESC, sortBy: SORT_BY.STAKE } });
+    } = useTable({ defaultState: { page: 0, limit: 100, orderBy: ORDER_BY.DESC, sortBy: SORT_BY.SCORE } });
 
     const fetchData = async () => {
         setLoading(true);
