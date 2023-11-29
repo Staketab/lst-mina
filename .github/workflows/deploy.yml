@@ -43,27 +43,33 @@ jobs:
             "^staging$": {
               "node_env": "development",
               "webroot": "/var/www/test/score",
+              "temproot": "/var/www/test/tmp",
               "ssh_hostname": "${{ secrets.FRONT_SCORE_IP }}",
               "ssh_password": "${{ secrets.FRONT_SCORE_SSH }}",
               "lib_latest": "true",
-              "keep_source_maps": "false"
+              "keep_source_maps": "false",
+              "serv": "app-test.service"
             },
             "^main$": {
               "node_env": "production",
               "webroot": "/var/www/prod/score",
+              "temproot": "/var/www/prod/tmp",
               "ssh_hostname": "${{ secrets.FRONT_SCORE_IP }}",
               "ssh_password": "${{ secrets.FRONT_SCORE_SSH }}",
               "lib_latest": "false",
-              "keep_source_maps": "false"
+              "keep_source_maps": "false",
+              "serv": "app.service"
             }
           }
         export_to: output,log
         mode: fill
 
     - name: Deploy React.js
-      uses: ./.github/actions/frontend-next-deploy-score
+      uses: ./.github/actions/frontend-next-deploy-score-lst
       with:
         webroot: ${{ steps.settings.outputs.webroot }}
+        temproot: ${{ steps.settings.outputs.temproot }}
+        serv: ${{ steps.settings.outputs.serv }}
         ssh_hostname: ${{ steps.settings.outputs.ssh_hostname }}
         ssh_username: ${{ secrets.SERVER_USERNAME }}
         ssh_password: ${{ steps.settings.outputs.ssh_password }}
