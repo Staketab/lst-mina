@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './SingleSelect.module.css';
-import DropdownWrapper from './../dropdownWrapper/index';
+import DropdownWrapper from '../dropdownWrapper/index';
 import classNames from 'classnames';
 import { useHandleClickOutside, useMedia } from '../../../hooks';
 import SelectPlate from '../selectPlate';
