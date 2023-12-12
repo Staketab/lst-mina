@@ -1,0 +1,12 @@
+body {
+    --col--dark: rgba(0, 0, 0, 0.87);
+    --col--link: #3963ff;
+    --col--light: #ffffff;
+    --col--gray4: rgba(0, 0, 0, 0.3);
+    --col--gray8: rgba(0, 0, 0, 0.05);
+    --col--gray9: #969799;
+    --link-active-color: #7e9bfc;
+    --link-active-hover-color: #587efc;
+    --link-inactive-color: #636465;
+    --link-inactive-hover-color: #636465;
+}

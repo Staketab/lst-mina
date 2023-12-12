@@ -1,0 +1,5 @@
+.content {
+    padding: 22px 62px 14px 52px;
+    width: calc(100% - 52px);
+    position: relative;
+}

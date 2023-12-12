@@ -1,0 +1,169 @@
+@keyframes appear {
+    0% {
+        opacity: 0;
+        pointer-events: none;
+    }
+    to {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    to {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@keyframes slideUpIn {
+    0% {
+        transform: translate3d(0, 1rem, 0);
+        opacity: 0;
+        pointer-events: none;
+    }
+    to {
+        transform: translateZ(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@keyframes slideUpOut {
+    0% {
+        transform: translateZ(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    to {
+        transform: translate3d(0, 1rem, 0);
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@keyframes slideRightIn {
+    0% {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideRightOut {
+    0% {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideLeftIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideLeftOut {
+    0% {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.overlayWrapper {
+    position: fixed;
+    z-index: 1000;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100vw;
+}
+
+.overlayWrapperActive {
+    visibility: visible;
+}
+
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100vw;
+    background: rgba(61, 71, 102, 0.5);
+    transition: all 300ms ease;
+}
+
+.popupOverlay {
+    position: absolute;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.top {
+    position: absolute;
+    left: 50%;
+    top: 53px;
+    transform: translateX(-50%);
+}
+
+.appear {
+    animation: appear 150ms;
+}
+
+.disappear {
+    animation: disappear 300ms forwards;
+}
+
+.slideUpIn {
+    animation: slideUpIn 150ms;
+}
+
+.slideUpOut {
+    animation: slideUpOut 300ms forwards;
+}
+
+.slideRightIn {
+    animation: slideRightIn 200ms;
+}
+
+.slideRightOut {
+    animation: slideRightOut 200ms forwards;
+}
+
+.slideLeftIn {
+    animation: slideLeftIn 200ms ease normal 0ms;
+}
+
+.slideLeftOut {
+    animation: slideLeftOut 200ms ease forwards 0ms;
+}
