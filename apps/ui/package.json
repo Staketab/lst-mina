@@ -21,15 +21,13 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "sass": "^1.69.5",
-        "typescript": "^4.9.5"
+        "typescript": "^4.9.5",
+        "chain": "workspace:*"
     },
     "devDependencies": {
         "@next/eslint-plugin-next": "^14.0.3",
         "@typescript-eslint/eslint-plugin": "^6.13.0",
         "@typescript-eslint/parser": "^6.13.0",
-        "eslint": "8.54.0",
-        "eslint-config-next": "14.0.3",
-        "eslint-config-prettier": "^8.10.0",
         "eslint-plugin-prettier": "^5.0.0",
         "eslint-plugin-react": "^7.33.2",
         "eslint-plugin-storybook": "^0.6.15",
@@ -38,5 +36,11 @@
         "stylelint-config-prettier": "^9.0.5",
         "stylelint-config-standard": "^34.0.0",
         "stylelint-declaration-strict-value": "^1.9.2"
+    },
+    "peerDependencies": {
+        "@proto-kit/module": "^0.1.1-develop.299",
+        "@proto-kit/sdk": "^0.1.1-develop.299",
+        "@proto-kit/sequencer": "^0.1.1-develop.299",
+        "o1js": "0.13.1"
     }
 }
