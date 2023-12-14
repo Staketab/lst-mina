@@ -31,6 +31,7 @@ export type TableConfig = {
 };
 
 export type LimitOptions = { text: string; value: number }[];
+export type TabSwitcherOptions = { text: string; value: string }[];
 
 export type DataTable = {
     data: any[];
