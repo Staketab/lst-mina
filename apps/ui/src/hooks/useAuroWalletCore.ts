@@ -1,24 +1,17 @@
 import { useEffect, useState } from 'react';
+import { ResultMessage, WalletContextType } from './useAuroWallet';
 
-export default function useAuroWalletCore() {
+export default function useAuroWalletCore(): WalletContextType {
     const [accountId, setAccountId] = useState<string>(null);
     const [connectMessage, setConnectMessage] = useState<string>(null);
-    const [stakingResultMessage, setStakingResultMessage] = useState<{
-        hash?: string;
-        message?: string;
-        result?: boolean;
-    }>({});
-    const [sendResultMessage, setSendResultMessage] = useState<{
-        hash?: string;
-        message?: string;
-        result?: boolean;
-    }>({});
+    const [stakingResultMessage, setStakingResultMessage] = useState<ResultMessage>({});
+    const [sendResultMessage, setSendResultMessage] = useState<ResultMessage>({});
     const [walletNetwork, setWalletNetwork] = useState(null);
     const resetConnectMessage = (): void => setConnectMessage(null);
     const resetSendResultMessage = (): void => setSendResultMessage({});
     const resetStakingResultMessage = (): void => setStakingResultMessage({});
 
-    const minaAdapter = window['mina'];
+    const minaAdapter = typeof window !== 'undefined' && window['mina'];
 
     function handleChainChange(newChain) {
         setWalletNetwork(newChain);

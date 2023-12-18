@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { ReactNode, RefObject } from 'react';
 import style from './DropdownWrapper.module.css';
 import classNames from 'classnames';
 import CloseIcon from './Close.svg';
 import Image from 'next/image';
 import { useMedia, useSpaceToRight } from '../../../hooks';
 import PopupOverlay from '../popupOverlay';
+
+type DropdownWrapperProps = {
+    children: ReactNode;
+    minWidth?: string;
+    maxHeight?: string;
+    className?: string;
+    show: boolean;
+    onClose: () => void;
+    parentRef?: RefObject<HTMLElement>;
+    forceToRight?: boolean;
+    forceToLeft?: boolean;
+    centered?: boolean;
+};
 
 const DropdownWrapper = ({
     children,
@@ -17,8 +30,8 @@ const DropdownWrapper = ({
     forceToRight = false,
     forceToLeft = false,
     centered = false,
-}) => {
-    const media = useMedia(0);
+}: DropdownWrapperProps): JSX.Element => {
+    const media = useMedia();
     const hasSpaceToRight = useSpaceToRight(parentRef?.current, minWidth + 20);
 
     return media.greater.sm && show ? (

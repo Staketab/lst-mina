@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { useEffect, useState, useRef } from 'react';
-import reactDom from 'react-dom';
+import { createPortal } from 'react-dom';
 import style from './PopupOverlay.module.css';
 import { useRouter } from 'next/router';
 import { useMedia } from '../../../hooks';
@@ -11,7 +11,7 @@ type PopupOverlayProps = {
     position?: string;
     show?: boolean;
     animation?: string;
-    forwardedRef?: any;
+    forwardedRef?: React.RefObject<HTMLElement>;
     zIndex?: number;
     height?: string;
 };
@@ -140,7 +140,7 @@ const PopupOverlay = ({
     }, []);
 
     return showState
-        ? reactDom.createPortal(
+        ? createPortal(
               <>
                   <div
                       className={classNames(style.wrapper, {

@@ -1,6 +1,29 @@
 import { useContext, createContext } from 'react';
 
-const DEFAULT_CONTEXT = {
+export type ResultMessage = {
+    hash?: string;
+    message?: string;
+    result?: boolean;
+};
+
+export type WalletContextType = {
+    accountId: string | null;
+    connectMessage: string | null;
+    stakingResultMessage: ResultMessage;
+    sendResultMessage: ResultMessage;
+    walletNetwork: string | null;
+    actions: {
+        onConnectClick: () => void;
+        onDisconnectClick: () => void;
+        onStakingClick: (to: string, memo: string, fee: number) => void;
+        onSendClick: (amount: number, to: string, fee: number, memo: string) => void;
+        resetConnectMessage: () => void;
+        resetSendResultMessage: () => void;
+        resetStakingResultMessage: () => void;
+    };
+};
+
+const DEFAULT_CONTEXT: WalletContextType = {
     accountId: null,
     connectMessage: null,
     stakingResultMessage: {},
@@ -13,6 +36,7 @@ const DEFAULT_CONTEXT = {
         resetConnectMessage: () => console.warn('Provider not connected'),
         resetSendResultMessage: () => console.warn('Provider not connected'),
         resetStakingResultMessage: () => console.warn('Provider not connected'),
+        onDisconnectClick: () => console.warn('Disconected'),
     },
 };
 

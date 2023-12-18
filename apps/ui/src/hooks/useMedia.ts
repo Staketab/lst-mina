@@ -1,50 +1,39 @@
-import { useEffect, useState, useCallback } from 'react';
-import _, { debounce } from 'lodash';
+import { useEffect, useState } from 'react';
 
-export const useMedia = (query?: string | number) => {
+type Greater = {
+    xs: boolean;
+    sm: boolean;
+    md: boolean;
+    lg: boolean;
+    xl: boolean;
+};
+
+export const useMedia = (): {
+    width: number;
+    greater: Greater;
+} => {
     let innerWidth;
     if (typeof window !== 'undefined') {
         innerWidth = window.innerWidth;
     }
-    const [width, setWidth] = useState(innerWidth);
-    const [dimensions, setDimensions] = useState({
-        xs: width <= 576,
-        sm: width > 576 && width <= 768,
-        md: width > 768 && width <= 992,
-        lg: width > 992 && width <= 1200,
-        xl: width > 1200 && width <= 1400,
-        xxl: width > 1400,
-    });
-    const [greater, setGreater] = useState({
+    const [width, setWidth] = useState<number>(innerWidth);
+
+    const [greater, setGreater] = useState<Greater>({
         xs: width > 576,
         sm: width > 768,
         md: width > 992,
         lg: width > 1200,
         xl: width > 1400,
     });
-    const [isGreaterThanQuery, setIsGreaterThanQuery] = useState(true);
-
-    const debouncedUpdateWidth = useCallback(
-        debounce(() => setWidth(innerWidth), 200),
-        []
-    );
 
     useEffect(() => {
-        window.addEventListener('resize', debouncedUpdateWidth);
+        window.addEventListener('resize', () => setWidth(innerWidth));
         return () => {
-            window.removeEventListener('resize', debouncedUpdateWidth);
+            window.removeEventListener('resize', () => setWidth(innerWidth));
         };
-    }, [debouncedUpdateWidth]);
+    }, []);
 
     useEffect(() => {
-        setDimensions({
-            xs: width <= 576,
-            sm: width > 576 && width <= 768,
-            md: width > 768 && width <= 992,
-            lg: width > 992 && width <= 1200,
-            xl: width > 1200 && width <= 1400,
-            xxl: width > 1400,
-        });
         setGreater({
             xs: width > 576,
             sm: width > 768,
@@ -54,15 +43,8 @@ export const useMedia = (query?: string | number) => {
         });
     }, [width]);
 
-    useEffect(() => {
-        setIsGreaterThanQuery(width > Number(query));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [width]);
-
     return {
         width,
-        dimensions,
-        isGreaterThanQuery,
         greater,
     };
 };

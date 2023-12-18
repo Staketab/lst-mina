@@ -7,6 +7,8 @@ import { ScoringConfig, testWorldConfig } from '../comman/config/tableConfig';
 import styles from './index.module.css';
 import { Header } from '../components/atoms/header';
 import { TabSwitcher } from '../components/atoms/tabSwitcher';
+import PageHeader from '../components/organisms/pageHeader/pageHeader';
+import OverlayWrapper from '../components/molecules/popupOverlay/overlayWrapper';
 
 export const limitOptions: LimitOptions = [
     { text: '50', value: 50 },
@@ -126,6 +128,8 @@ export default function Home() {
                 <link rel="icon" href="/assets/favicon.ico" />
             </Head>
             <div className={styles.content}>
+                <OverlayWrapper />
+                <PageHeader />
                 <Header title="Leaderboard" />
                 <TabSwitcher options={tabSwitcherOptions} onClick={handleTabSwitcher} />
                 <Table

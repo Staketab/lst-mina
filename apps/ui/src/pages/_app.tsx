@@ -7,8 +7,12 @@ import '../../public/typography.css';
 
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
+import { WalletContext } from '../hooks/useAuroWallet';
+import useAuroWalletCore from '../hooks/useAuroWalletCore';
 
 export default function App({ Component, pageProps }: AppProps) {
+    const walletData = useAuroWalletCore();
+
     const handleWindowResize = () => {
         document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
     };
@@ -22,5 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
         };
     }, []);
 
-    return <Component {...pageProps} />;
+    return (
+        <WalletContext.Provider value={walletData}>
+            <Component {...pageProps} />
+        </WalletContext.Provider>
+    );
 }
