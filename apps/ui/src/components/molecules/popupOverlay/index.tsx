@@ -11,7 +11,7 @@ type PopupOverlayProps = {
     position?: string;
     show?: boolean;
     animation?: string;
-    forwardedRef?: React.RefObject<HTMLElement>;
+    forwardedRef?: any;
     zIndex?: number;
     height?: string;
 };

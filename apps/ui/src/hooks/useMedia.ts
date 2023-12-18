@@ -1,24 +1,13 @@
 import { useEffect, useState } from 'react';
 
-type Greater = {
-    xs: boolean;
-    sm: boolean;
-    md: boolean;
-    lg: boolean;
-    xl: boolean;
-};
-
-export const useMedia = (): {
-    width: number;
-    greater: Greater;
-} => {
+export const useMedia = (query?: string | number) => {
     let innerWidth;
     if (typeof window !== 'undefined') {
         innerWidth = window.innerWidth;
     }
-    const [width, setWidth] = useState<number>(innerWidth);
-
-    const [greater, setGreater] = useState<Greater>({
+    const [width, setWidth] = useState(innerWidth);
+    const [isGreaterThanQuery, setIsGreaterThanQuery] = useState(true);
+    const [greater, setGreater] = useState({
         xs: width > 576,
         sm: width > 768,
         md: width > 992,
@@ -27,6 +16,8 @@ export const useMedia = (): {
     });
 
     useEffect(() => {
+        console.log('1111111');
+
         window.addEventListener('resize', () => setWidth(innerWidth));
         return () => {
             window.removeEventListener('resize', () => setWidth(innerWidth));
@@ -34,6 +25,8 @@ export const useMedia = (): {
     }, []);
 
     useEffect(() => {
+        setIsGreaterThanQuery(width > Number(query));
+
         setGreater({
             xs: width > 576,
             sm: width > 768,
@@ -46,5 +39,6 @@ export const useMedia = (): {
     return {
         width,
         greater,
+        isGreaterThanQuery,
     };
 };
