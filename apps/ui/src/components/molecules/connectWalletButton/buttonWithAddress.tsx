@@ -10,6 +10,8 @@ import DropdownWrapper from '../dropdownWrapper';
 import { useRef, useState } from 'react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+import { Button } from '../../atoms/button';
+import { Variant } from '../../atoms/button/types';
 
 const ButtonWithAddress = ({ address, onDisconnect }: { address: string; onDisconnect: () => void }) => {
     const [isShowDropdown, setIsShowDropdown] = useState<boolean>(false);
@@ -21,50 +23,52 @@ const ButtonWithAddress = ({ address, onDisconnect }: { address: string; onDisco
 
     return (
         <>
-            <div className={style.buttonWithAddress} onClick={handleCLick} ref={refTest}>
-                <Image src={auroIcon} alt="" className={style.auroIcon} />
-                <StaticEllipse text={address} view={{ sm: 7, md: 9, lg: 9 }} />
-                <DropdownWrapper
-                    className={style.dropdownWrapper}
-                    show={isShowDropdown}
-                    onClose={() => setIsShowDropdown(false)}
-                    parentRef={refTest}
-                    minWidth="185px"
-                >
-                    <div
-                        className={classNames(style.item, 't-inter-semi-bold')}
-                        onClick={() => {
-                            navigator.clipboard.writeText(address);
-                            setIsShowDropdown(false);
-                        }}
+            <Button className={style.buttonWithAddress} onClick={handleCLick} variant={Variant.blue}>
+                <div ref={refTest}>
+                    <Image src={auroIcon} alt="" className={style.auroIcon} />
+                    <StaticEllipse text={address} view={{ sm: 7, md: 9, lg: 9 }} />
+                    <DropdownWrapper
+                        className={style.dropdownWrapper}
+                        show={isShowDropdown}
+                        onClose={() => setIsShowDropdown(false)}
+                        parentRef={refTest}
+                        minWidth="185px"
                     >
-                        <Image src={copy} alt="" className={style.icon} />
-                        Copy address
-                    </div>
-                    <div
-                        className={classNames(style.item, 't-inter-semi-bold')}
-                        onClick={() => {
-                            setIsShowDropdown(false);
-                            router.push('https://minascan.io/testworld/account/' + address);
-                        }}
-                    >
-                        <Image src={profile} alt="" className={style.icon} />
-                        Profile
-                    </div>
-                    {onDisconnect && (
                         <div
                             className={classNames(style.item, 't-inter-semi-bold')}
                             onClick={() => {
-                                onDisconnect();
+                                navigator.clipboard.writeText(address);
                                 setIsShowDropdown(false);
                             }}
                         >
-                            <Image src={disconnect} alt="" className={style.icon} />
-                            Disconnect
+                            <Image src={copy} alt="" className={style.icon} />
+                            Copy address
                         </div>
-                    )}
-                </DropdownWrapper>
-            </div>
+                        <div
+                            className={classNames(style.item, 't-inter-semi-bold')}
+                            onClick={() => {
+                                setIsShowDropdown(false);
+                                router.push('https://minascan.io/testworld/account/' + address);
+                            }}
+                        >
+                            <Image src={profile} alt="" className={style.icon} />
+                            Profile
+                        </div>
+                        {onDisconnect && (
+                            <div
+                                className={classNames(style.item, 't-inter-semi-bold')}
+                                onClick={() => {
+                                    onDisconnect();
+                                    setIsShowDropdown(false);
+                                }}
+                            >
+                                <Image src={disconnect} alt="" className={style.icon} />
+                                Disconnect
+                            </div>
+                        )}
+                    </DropdownWrapper>
+                </div>
+            </Button>
         </>
     );
 };

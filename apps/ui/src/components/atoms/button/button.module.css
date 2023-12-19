@@ -1,0 +1,137 @@
+.apiButton {
+    background-color: var(--col--link);
+    color: var(--col--light);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all ease 200ms;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.apiButton svg {
+    margin-right: 4px;
+}
+
+.apiButton:hover {
+    background-color: var(--col--button2);
+}
+
+.apiButton:active {
+    box-shadow: 0px 0px 0px 3px var(--col--button3);
+}
+
+.apiButton:disabled {
+    background-color: var(--col--button4);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.light {
+    color: var(--col--link);
+    background-color: transparent
+}
+
+
+.light:hover {
+    background-color: transparent;
+}
+
+.light:active {
+    background-color: var(--col--button6);
+    box-shadow: none;
+}
+
+.light:disabled {
+    color: var(--col--button4);
+    background-color: transparent
+}
+
+.red {
+    background-color: var(--col--button8);
+    color: var(--col--button9);
+}
+
+.red svg {
+    fill: var(--col--button9);
+}
+
+.red:hover {
+    background-color: var(--col--button10);
+}
+
+.red:active {
+    background-color: var(--col--button11);
+    box-shadow: none;
+}
+
+.red:disabled {
+    color: var(--col--button13);
+    background-color: var(--col--button12);
+}
+
+.grey {
+    border-radius: 6px;
+    box-shadow: 0px 0px 0px 1px var(--col--button14);
+    background-color: var(--col--light);
+    color: var(--col--dark2);
+}
+
+.grey svg {
+    fill: var(--col--dark2);
+}
+
+.grey:hover {
+    background-color: var(--col--button15);
+}
+
+.grey:active {
+    background-color: var(--col--button16);
+    box-shadow: 0px 0px 0px 1px var(--col--button14);
+}
+
+.grey:disabled {
+    background-color: transparent;
+    color: var(--col--button17);
+}
+
+.blue {
+    box-shadow: 0px 0px 0px 2px var(--col--secondary8);
+    background-color: var(--col--button7);
+    color: var(--col--link);
+}
+
+.blue svg {
+    fill: var(--col--link);
+}
+
+.blue:hover {
+    background-color: var(--col--button5);
+}
+
+.blue:active {
+    background-color: var(--col--button4);
+    box-shadow: 0px 0px 0px 2px var(--col--secondary8);
+}
+
+.blue:disabled {
+    color: var(--col--button4);
+    background-color: var(--col--button7);
+    box-shadow: 0px 0px 0px 2px var(--col--secondary8);
+}
+
+.cancel {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--col--gray1);
+}
+
+.cancel:hover, .cancel:active {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--col--gray1);
+    box-shadow: none;
+}

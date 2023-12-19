@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ResultMessage, WalletContextType } from './useAuroWallet';
+import { useLocalStorage } from './useLocalStorage';
 
 export default function useAuroWalletCore(): WalletContextType {
+    const [, setIsConnectedAuro] = useLocalStorage('isConnectedAuro');
+
     const [accountId, setAccountId] = useState<string>(null);
     const [connectMessage, setConnectMessage] = useState<string>(null);
     const [stakingResultMessage, setStakingResultMessage] = useState<ResultMessage>({});
@@ -47,11 +50,13 @@ export default function useAuroWalletCore(): WalletContextType {
                 const approveAccount = data;
                 setAccountId(approveAccount);
                 setConnectMessage('Connected');
+                setIsConnectedAuro(true);
             }
         }
     };
     const onDisconnectClick = async (): Promise<void> => {
         setAccountId(null);
+        setIsConnectedAuro(false);
     };
 
     const onStakingClick = async (to, memo, fee) => {

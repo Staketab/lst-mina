@@ -1,18 +1,39 @@
 import classNames from 'classnames';
-import style from './index.module.css';
+import React, { ReactNode } from 'react';
 
-type Button = {
-    text: string;
-    onClick: () => void;
+import styles from './button.module.css';
+import { Variant } from './types';
+
+interface ApiButtonProps {
+    /**
+     * Button contents
+     */
+    text?: string;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    disabled?: boolean;
     className?: string;
-};
+    variant?: Variant;
+    id?: string;
+    children?: ReactNode;
+}
 
-const Button = ({ text, onClick, className }: Button): JSX.Element => {
+export const Button = ({ text, onClick, disabled, className, variant, id, children }: ApiButtonProps) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        onClick && onClick(event);
+    };
+
+    const content = children ? children : text;
+
     return (
-        <button onClick={onClick} className={classNames(style.button, className, 't-inter-semi-bold')}>
-            {text}
+        <button
+            id={id || null}
+            className={classNames(styles.apiButton, 't-inter-semi-bold', className, {
+                [styles[variant]]: variant,
+            })}
+            onClick={handleClick}
+            disabled={disabled}
+        >
+            {content}
         </button>
     );
 };
-
-export default Button;

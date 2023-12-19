@@ -1,16 +1,6 @@
-.buttonWithAddress {
-    align-items: center;
-    background-color: #eef1ff;
-    border: 1px solid #597fff;
-    border-radius: 5px;
-    cursor: pointer;
+.buttonWithAddress > div {
     display: flex;
     gap: 4px;
-    padding: 3px 8px;
-    transition: all 0.2s ease;
-    user-select: none;
-    width: fit-content;
-    position: relative;
 }
 .auroIcon {
     width: 22px;

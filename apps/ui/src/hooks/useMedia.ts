@@ -16,8 +16,6 @@ export const useMedia = (query?: string | number) => {
     });
 
     useEffect(() => {
-        console.log('1111111');
-
         window.addEventListener('resize', () => setWidth(innerWidth));
         return () => {
             window.removeEventListener('resize', () => setWidth(innerWidth));
