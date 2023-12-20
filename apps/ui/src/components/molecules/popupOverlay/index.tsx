@@ -8,9 +8,9 @@ import { useMedia } from '../../../hooks';
 type PopupOverlayProps = {
     children: React.ReactNode;
     onClose?: () => void;
-    position?: string;
+    position?: 'bottom' | 'center' | 'top';
     show?: boolean;
-    animation?: string;
+    animation?: 'slideUp' | 'appear';
     forwardedRef?: any;
     zIndex?: number;
     height?: string;

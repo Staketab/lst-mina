@@ -17,7 +17,7 @@ interface ApiButtonProps {
     children?: ReactNode;
 }
 
-export const Button = ({ text, onClick, disabled, className, variant, id, children }: ApiButtonProps) => {
+export const Button = ({ text, onClick, disabled, className, variant, id, children }: ApiButtonProps): JSX.Element => {
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         onClick && onClick(event);
     };

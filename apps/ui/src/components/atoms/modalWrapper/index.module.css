@@ -1,0 +1,8 @@
+.wrapper {
+    background-color: var(--col--light);
+    border-radius: 12px;
+    max-width: 450px;
+    padding: 24px;
+    position: relative;
+    width: 95vw;
+}

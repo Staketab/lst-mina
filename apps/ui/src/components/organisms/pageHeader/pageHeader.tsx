@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from '../../atoms/button';
 import { Variant } from '../../atoms/button/types';
 import { ConnectWalletButton } from '../../molecules/connectWalletButton';
-import SendComponent from '../../molecules/sendComponent';
+import { StakeModal } from '../../molecules/stakeModal';
 
 import style from './index.module.css';
 
@@ -12,13 +12,13 @@ const PageHeader = () => {
     return (
         <div className={style.wrapper}>
             <ConnectWalletButton />
-            <Button text="Send" variant={Variant.light} />
-            <Button text="Stake" variant={Variant.blue} onClick={() => setOpenStaekeModul(true)} />
-            <SendComponent
-                open={openStakeModul}
-                setShowPopup={() => setOpenStaekeModul(!openStakeModul)}
-                recipient={'B62qoTtn6hP2R1x5d4UQoJos9vjoNGxLhaQn5cSKneu25Q3wpmtPirT'}
+            <Button
+                className={style.stakeButton}
+                text="Stake"
+                variant={Variant.blue}
+                onClick={() => setOpenStaekeModul(true)}
             />
+            <StakeModal open={openStakeModul} setShowPopup={() => setOpenStaekeModul(false)} />
         </div>
     );
 };

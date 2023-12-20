@@ -9,6 +9,7 @@ import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { WalletContext } from '../hooks/useAuroWallet';
 import useAuroWalletCore from '../hooks/useAuroWalletCore';
+import OverlayWrapper from '../components/molecules/popupOverlay/overlayWrapper';
 
 export default function App({ Component, pageProps }: AppProps) {
     const walletData = useAuroWalletCore();
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     return (
         <WalletContext.Provider value={walletData}>
+            <OverlayWrapper />
             <Component {...pageProps} />
         </WalletContext.Provider>
     );

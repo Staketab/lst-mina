@@ -55,7 +55,7 @@
 }
 
 .header .message {
-    color: #0009;
+    color: var(--col--dark);
     line-height: 22px;
     text-align: center;
     max-width: 95%;
@@ -81,7 +81,7 @@
     align-items: center;
     gap: 8px;
     position: relative;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--col--gray8);
 }
 
 .mobileHeader .logo {
@@ -123,7 +123,7 @@
 }
 
 .closeBtn:hover img {
-    fill: rgba(0, 0, 0, 0.6);
+    fill: var(--col--gray1);
 }
 
 .stepProgressPlate {
@@ -172,7 +172,7 @@
 }
 
 .walletListCard {
-    background-color: #fff;
+    background-color: var(--col--light);
     border: 1px solid rgba(240, 241, 245, 1);
     padding: 16px;
     display: flex;

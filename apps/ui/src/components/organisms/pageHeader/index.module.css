@@ -2,3 +2,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.stakeButton {
+    margin-left: 20px;
+}
