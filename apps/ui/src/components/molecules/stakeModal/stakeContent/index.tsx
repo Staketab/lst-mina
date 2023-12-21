@@ -9,6 +9,7 @@ import { formatNum } from '../../../../comman/helpers';
 import { StakeParams } from '../stakeModal';
 import backIcon from '../img/Back.svg';
 import Image from 'next/image';
+import { defaultWallet } from '../../../../comman/constants';
 
 type StakeContentProps = {
     avaliableAmount: number;
@@ -44,7 +45,7 @@ const StakeContent = ({ avaliableAmount, onClose, minAmount, onStake }: StakeCon
         onStake({
             amount: amount,
             fee: fee,
-            address: 'test',
+            address: defaultWallet,
             memo: 'stake',
         });
     };

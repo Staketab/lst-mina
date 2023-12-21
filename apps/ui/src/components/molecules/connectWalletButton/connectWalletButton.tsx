@@ -8,7 +8,7 @@ import ConnectButton from './connectButton';
 import WalletConnectPopUp from './walletConnectPopUp';
 import getWalletConfig from './hellper';
 
-const ConnectWalletButton = () => {
+const ConnectWalletButton = ({ handleAddress }: { handleAddress: (value: boolean) => void }) => {
     const [showPopup, setShowPopup] = useState(false);
 
     const {
@@ -25,6 +25,8 @@ const ConnectWalletButton = () => {
     };
 
     const address = accountId?.[0];
+
+    handleAddress(!address);
 
     const handleConnect = () => {
         setShowPopup(true);

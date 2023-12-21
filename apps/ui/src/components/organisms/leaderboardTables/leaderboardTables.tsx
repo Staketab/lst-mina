@@ -5,9 +5,10 @@ import { useTable } from '../../../hooks';
 import { ApiClient } from '../../../api/apiClient';
 import { ScoringConfig, testWorldConfig } from '../../../comman/config/tableConfig';
 import { limitOptions } from './constants';
+import { NETWORK } from '../../../comman/constants';
 
 const mainnetApi = new ApiClient('https://minascan.io/mainnet/api//api/scoring');
-const testworldApi = new ApiClient('https://minascan.io/testworld/api//api/validators');
+const testworldApi = new ApiClient(`https://minascan.io/${NETWORK}/api//api/validators`);
 
 type LeaderboardTablesProps = {
     tabSwitcherOptions: TabSwitcherOptions;

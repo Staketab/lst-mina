@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
+import { ApiClient } from '../api/apiClient';
+import { NETWORK } from '../comman/constants';
+
+const BallanceApi = new ApiClient(`https://minascan.io/${NETWORK}/api//api/core/accounts/`);
 
 const useAddressBalance = (address) => {
     const [balance, setBalance] = useState(null);
 
     const APIRequest = async (address) => {
         try {
-            const balance = await fetch(`https://minascan.io/testworld/api//api/core/accounts/${address}/balance`);
+            const balance = await BallanceApi.fetchData(`${address}/balance`);
+
             if ('balance' in balance) {
                 setBalance(balance?.balance ?? 0);
             }
@@ -15,7 +20,9 @@ const useAddressBalance = (address) => {
     };
 
     useEffect(() => {
-        APIRequest(address);
+        if (address) {
+            APIRequest(address);
+        }
     }, [address]);
 
     return {
