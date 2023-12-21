@@ -59,7 +59,7 @@ export default function useAuroWalletCore(): WalletContextType {
         setIsConnectedAuro(false);
     };
 
-    const onStakingClick = async (to, memo, fee) => {
+    const onStakingClick = async (to: string, memo: string, fee: number) => {
         const stakingResult = await minaAdapter
             .sendStakeDelegation({
                 to,
@@ -74,7 +74,7 @@ export default function useAuroWalletCore(): WalletContextType {
         });
     };
 
-    const onSendClick = async (amount, to, fee, memo): Promise<void> => {
+    const onSendClick = async (amount: number, to: string, fee: number, memo: string): Promise<void> => {
         const sendResult = await minaAdapter
             .sendPayment({
                 amount,

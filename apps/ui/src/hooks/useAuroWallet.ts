@@ -6,12 +6,17 @@ export type ResultMessage = {
     result?: boolean;
 };
 
+export type WalletNetwork = {
+    chainId: string;
+    name: string;
+};
+
 export type WalletContextType = {
     accountId: string | null;
     connectMessage: string | null;
     stakingResultMessage: ResultMessage;
     sendResultMessage: ResultMessage;
-    walletNetwork: string | null;
+    walletNetwork: WalletNetwork | null;
     actions: {
         onConnectClick: () => void;
         onDisconnectClick: () => void;

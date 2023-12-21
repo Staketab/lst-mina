@@ -1,0 +1,15 @@
+.warning {
+    display: flex;
+    padding: 10px 16px;
+    border-radius: 7px;
+}
+
+.warning {
+    background-color: var(--col--secondary2);
+    color: var(--col--secondary1);
+}
+
+.icon {
+    display: block;
+    margin-right: 5px;
+}

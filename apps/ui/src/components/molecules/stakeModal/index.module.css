@@ -46,3 +46,37 @@
     position: absolute;
     cursor: pointer;
 }
+
+.closeIcon {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    cursor: pointer;
+}
+
+.closeIcon:hover {
+    opacity: 0.7;
+}
+
+.successIcon {
+    display: block;
+    margin: 30px auto;
+}
+
+.successContent button {
+    margin: 0 auto;
+}
+
+.successContent p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stakeContentBody {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.alertMessage {
+    margin-bottom: 12px;
+}

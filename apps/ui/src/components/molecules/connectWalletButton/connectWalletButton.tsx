@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import useAuroWallet from '../../../hooks/useAuroWallet';
 import classNames from 'classnames';
 
 import style from './index.module.css';
@@ -7,6 +6,7 @@ import ButtonWithAddress from './buttonWithAddress';
 import ConnectButton from './connectButton';
 import WalletConnectPopUp from './walletConnectPopUp';
 import getWalletConfig from './hellper';
+import useAuroWalletCore from '../../../hooks/useAuroWalletCore';
 
 const ConnectWalletButton = ({ handleAddress }: { handleAddress: (value: boolean) => void }) => {
     const [showPopup, setShowPopup] = useState(false);
@@ -15,7 +15,7 @@ const ConnectWalletButton = ({ handleAddress }: { handleAddress: (value: boolean
         accountId,
         connectMessage,
         actions: { onConnectClick, resetConnectMessage, onDisconnectClick },
-    } = useAuroWallet();
+    } = useAuroWalletCore();
 
     const walletName = accountId ? 'Auro Wallet' : null;
 
