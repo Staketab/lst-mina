@@ -1,5 +1,12 @@
 import React from 'react';
 import { colorConfig, disabledColor } from './constants';
+import loaderIcon from './loader.gif';
+import Image from 'next/image';
+
+export enum LoaderVariant {
+    CIRCLE = 'circle',
+    DOTS = 'dots',
+}
 
 type LoaderProps = {
     label?: string;
@@ -8,8 +15,18 @@ type LoaderProps = {
     radius?: number;
     gap?: number;
     duration?: number;
+    variant?: LoaderVariant;
 };
-const Loader = ({ label, disabled, dotCount = 5, radius = 3, gap = 8, duration = 2000 }: LoaderProps): JSX.Element => {
+
+const Loader = ({
+    label,
+    disabled,
+    dotCount = 5,
+    radius = 3,
+    gap = 8,
+    duration = 2000,
+    variant = LoaderVariant.DOTS,
+}: LoaderProps): JSX.Element => {
     const r = radius;
     const g = gap;
     const colors = colorConfig.blue;
@@ -49,6 +66,10 @@ const Loader = ({ label, disabled, dotCount = 5, radius = 3, gap = 8, duration =
         }
         return arr;
     };
+
+    if (variant === LoaderVariant.CIRCLE) {
+        return <Image src={loaderIcon} alt="...loading" width={32} height={32} />;
+    }
 
     return (
         <svg

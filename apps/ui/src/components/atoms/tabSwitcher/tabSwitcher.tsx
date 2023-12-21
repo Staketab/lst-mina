@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import styles from './index.module.css';
@@ -8,38 +8,29 @@ type TabSwitcher = {
     initialValue?: string;
     options: TabSwitcherOptions;
     onClick: (value: string) => void;
-    disabled?: boolean;
 };
 
-const TabSwitcher = ({ initialValue, options, onClick, disabled }: TabSwitcher): JSX.Element => {
-    const [current, setCurrent] = useState(initialValue);
+const TabSwitcher = ({ options, onClick }: TabSwitcher): JSX.Element => {
+    const [current, setCurrent] = useState(options[0]);
 
-    useEffect(() => {
-        setCurrent(!initialValue ? options[0].value : initialValue);
-    }, [initialValue]);
-
-    const clickOption = (val) => {
-        setCurrent(val);
-        onClick(val);
+    const handleClick = (value: string): void => {
+        setCurrent(value);
+        onClick(value);
     };
 
     return (
-        <div className={classNames(styles.doubleTabSwitcherWrapper, 't-inter-medium')}>
-            <div className={styles.doubleTabSwitcher}>
-                {options.map((elem) => (
-                    <div
-                        key={elem.value}
-                        className={classNames(styles.tab, {
-                            [styles.tabActive]: current === elem.value && !disabled,
-                            [styles.tabActiveDisabled]: current === elem.value && disabled,
-                            [styles.tabDisabledNotSelected]: current !== elem.value && disabled,
-                        })}
-                        onClick={() => (disabled ? null : clickOption(elem.value))}
-                    >
-                        {elem.text}
-                    </div>
-                ))}
-            </div>
+        <div className={classNames(styles.doubleTabSwitcher, 't-inter-medium')}>
+            {options.map((value) => (
+                <div
+                    key={value}
+                    className={classNames(styles.tab, {
+                        [styles.tabActive]: current === value,
+                    })}
+                    onClick={() => handleClick(value)}
+                >
+                    {value}
+                </div>
+            ))}
         </div>
     );
 };

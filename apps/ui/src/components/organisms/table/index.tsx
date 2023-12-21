@@ -1,47 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import TableHeader from './tableHeader';
 import TableBody from './tableBody';
 import style from './Table.module.css';
 import classNames from 'classnames';
 import Pagination from '../../molecules/pagination';
-import { useIsFullyScrolled } from '../../../hooks';
 import { TableErrorMessage } from '../../atoms/tableErrorMessage';
-import { LimitOptions, TableConfig } from '../../../comman/types';
-import loader from '../../../../public/assets/loader.gif';
-import Image from 'next/image';
+import { DataTable, LimitOptions, TableConfig } from '../../../comman/types';
+import { Loader, LoaderVariant } from '../../atoms/loader';
 
 type TableProps = {
-    data: any[];
+    data: DataTable[];
     config: TableConfig[];
     isLoading: boolean;
     currentPage: number;
-    pagesCount: number;
     pageLimit: number;
-    totalElements: number;
-    onPageChange: (value: number) => void;
-    onLimitChange: (value: number) => void;
-    customShowingText?: string;
     sortBy: string;
     orderBy: string;
-    initialOrderBy?: string;
+    totalElements: number;
+    pagesCount: number;
+    limitOptions?: LimitOptions;
+    onPageChange: (value: number) => void;
+    onLimitChange: (value: number) => void;
     onSortChange?: (value: string) => void;
     onOrderChange?: (value: string) => void;
-
-    onRowClick?: () => void;
-    activeRowIndex?: number;
-    limitOptions?: LimitOptions;
-    hidePagination?: boolean;
-    classnames?: string;
-    needPagination?: boolean;
-    hideTopPagination?: boolean;
-    noPadding?: boolean;
-    noFullMobileWidth?: boolean;
-    onClearStr?: () => void;
-    registerUrl?: string;
-    noFade?: boolean;
-    totalCount?: number;
-    type?: string;
-    filtersChild?: string;
 };
 
 const Table = ({
@@ -53,38 +34,15 @@ const Table = ({
     pagesCount = 1,
     pageLimit = 50,
     totalElements = data?.length ?? 0,
+    limitOptions,
     onPageChange,
     onLimitChange,
-    customShowingText,
     sortBy,
     orderBy,
-    initialOrderBy,
     onSortChange,
     onOrderChange,
-    onRowClick,
-    activeRowIndex,
-    limitOptions,
-    hidePagination,
-    classnames,
-    hideTopPagination,
-    noPadding,
-    noFullMobileWidth = false,
-    onClearStr,
-    registerUrl,
-    noFade,
-    totalCount,
-    type,
-    // render props
-    filtersChild = null,
-}: TableProps) => {
-    const [elements, setElements] = useState(totalElements);
-
-    useEffect(() => {
-        setElements(totalElements);
-    }, [totalElements]);
-
+}: TableProps): JSX.Element => {
     const wrapperRef = useRef(null);
-    const { fullyScrolled, isScrolled } = useIsFullyScrolled(wrapperRef);
 
     useEffect(() => {
         wrapperRef.current?.scrollTo({
@@ -99,100 +57,61 @@ const Table = ({
     const generateTemplateColumn = (config) =>
         config.map((el) => el?.style?.outerWidth ?? (el?.style?.noGrow ? 'auto' : '1fr')).join(' ');
 
-    const showPagination = totalElements > (limitOptions?.length > 0 ? limitOptions[0]?.value ?? 50 : 50);
-
     const showErrorMessage = !isLoading && (!data || data?.length < 1 || !Object.values(data)?.length);
+
+    const renderPagination = () => {
+        return (
+            <Pagination
+                currentPage={currentPage}
+                pagesCount={pagesCount}
+                pageLimit={pageLimit}
+                totalElements={totalElements}
+                onPageChange={onPageChange}
+                onLimitChange={onLimitChange}
+                isLoading={isLoading}
+                limitOptions={limitOptions}
+                offset={offset}
+            />
+        );
+    };
 
     return (
         <div
-            className={classNames(style.tableComponent, classnames, {
+            className={classNames(style.tableComponent, {
                 [style.noData]: !isLoading && (!data || data?.length < 1),
-                [style.noDataNoPagination]:
-                    (elements <= 20 || hidePagination) && !isLoading && (!data || data?.length < 1),
-                'full-mobile-width': !noFullMobileWidth,
             })}
         >
-            {filtersChild ? <div className={style.tableFiltersContainer}>{filtersChild}</div> : null}
             {config && (
                 <>
-                    {!hidePagination && !hideTopPagination && (
-                        <Pagination
-                            currentPage={currentPage}
-                            pagesCount={pagesCount}
-                            pageLimit={pageLimit}
-                            totalElements={totalElements}
-                            onPageChange={onPageChange}
-                            onLimitChange={onLimitChange}
-                            isLoading={isLoading}
-                            limitOptions={limitOptions}
-                            offset={offset}
-                            totalCount={totalCount}
-                            type={type}
-                            customShowingText={customShowingText}
-                        />
-                    )}
-                    <div
-                        className={classNames(style.wrapper, {
-                            [style.wrapperNoFade]: !isScrolled || fullyScrolled || noFade,
-                            [style.noPagination]: !noPadding && (elements <= 20 || isLoading || hidePagination),
-                        })}
-                    >
+                    {renderPagination()}
+                    <div>
                         <div
                             className={style.table}
                             ref={wrapperRef}
                             style={{ gridTemplateColumns: generateTemplateColumn(config) }}
                         >
-                            <TableHeader
-                                config={config}
-                                hidePagination
-                                showPagination={showPagination}
-                                isLoading={isLoading}
-                                sortBy={sortBy}
-                                orderBy={orderBy}
-                                initialOrderBy={initialOrderBy}
-                                onSortChange={onSortChange}
-                                onOrderChange={onOrderChange}
-                                isHiddenBorderBottom={showErrorMessage}
-                            />
-                            {!isLoading && (
-                                <TableBody
-                                    data={data}
+                            {
+                                <TableHeader
                                     config={config}
-                                    currentPage={currentPage}
-                                    onRowClick={onRowClick}
-                                    activeRowIndex={activeRowIndex}
+                                    hidePagination
+                                    isLoading={isLoading}
+                                    sortBy={sortBy}
+                                    orderBy={orderBy}
+                                    onSortChange={onSortChange}
+                                    onOrderChange={onOrderChange}
+                                    isHiddenBorderBottom={showErrorMessage}
                                 />
-                            )}
+                            }
+                            {!isLoading && <TableBody data={data} config={config} currentPage={currentPage} />}
                         </div>
                     </div>
                     {isLoading && (
                         <div className={style.loadingScreen}>
-                            <Image
-                                src={loader}
-                                alt="preloader"
-                                style={{ width: '42px', height: '32px' }}
-                                width={32}
-                                height={32}
-                            />
+                            <Loader variant={LoaderVariant.CIRCLE} />
                         </div>
                     )}
-                    {showErrorMessage && <TableErrorMessage onClearStr={onClearStr} registerUrl={registerUrl} />}
-                    {showPagination && !hidePagination && (
-                        <Pagination
-                            currentPage={currentPage}
-                            pagesCount={pagesCount}
-                            pageLimit={pageLimit}
-                            totalElements={totalElements}
-                            onPageChange={onPageChange}
-                            onLimitChange={onLimitChange}
-                            isLoading={isLoading}
-                            limitOptions={limitOptions}
-                            offset={offset}
-                            totalCount={totalCount}
-                            type={type}
-                            customShowingText={customShowingText}
-                        />
-                    )}
+                    {showErrorMessage && <TableErrorMessage />}
+                    {!isLoading && renderPagination()}
                 </>
             )}
         </div>

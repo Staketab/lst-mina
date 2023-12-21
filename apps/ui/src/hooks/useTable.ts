@@ -1,6 +1,32 @@
 import { useEffect, useState } from 'react';
 
-export const useTable = ({ defaultState }) => {
+type UseTableProps = {
+    defaultState: {
+        limit: number;
+        sortBy: string;
+        orderBy: string;
+    };
+};
+
+type UseTableresult = {
+    limit: number;
+    sortBy: string;
+    orderBy: string;
+    page: number;
+    searchStr: string;
+    resetFilter: () => void;
+    isInitState: boolean;
+    isSearchStrEmpty: boolean;
+    actions: {
+        setSortBy: (value: string) => void;
+        setLimit: (value: number) => void;
+        setOrderBy: (value: string) => void;
+        setPage: (value: number) => void;
+        setSearchStr: (value: string) => void;
+    };
+};
+
+export const useTable = ({ defaultState }: UseTableProps): UseTableresult => {
     let url;
     if (typeof window !== 'undefined') {
         url = window?.location.href;

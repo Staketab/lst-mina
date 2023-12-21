@@ -1,25 +1,19 @@
 import React from 'react';
 import style from './Pagination.module.css';
-import classNames from 'classnames';
-import { formatNum } from '../../../comman/helpers';
 import Pager from '../pager';
 import SingleSelect from '../singleSelect';
+import { LimitOptions } from '../../../comman/types';
 
 type PaginationProps = {
     currentPage: number;
+    pagesCount: number;
     pageLimit: number;
     totalElements: number;
-    totalCount: number;
-    offset?: number;
-    className?: string;
-    type?: string;
-    customShowingText?: string;
-    showTotalElements?: boolean;
-    pagesCount: number;
-    isLoading: boolean;
-    limitOptions: any[];
     onPageChange: (value: number | string) => void;
     onLimitChange: (value: number) => void;
+    isLoading: boolean;
+    offset?: number;
+    limitOptions?: LimitOptions;
 };
 
 const Pagination = ({
@@ -27,48 +21,22 @@ const Pagination = ({
     pageLimit,
     totalElements,
     offset,
-    className,
-    totalCount,
-    type,
-    customShowingText,
-    showTotalElements = false,
     pagesCount,
     isLoading,
+    limitOptions,
     onPageChange,
     onLimitChange,
-    limitOptions,
 }: PaginationProps) => {
     const nextOffset = pageLimit * (currentPage + 1);
 
     return (
-        <div
-            className={classNames(style.pagination, className, {
-                [style.paginationMobileWithShowing]: showTotalElements,
-            })}
-        >
-            <div
-                className={classNames(style.showing, {
-                    [style.showingHiddenOnMobile]: !showTotalElements,
-                    [style.showingMobile]: showTotalElements,
-                })}
-            >
-                {totalCount && totalElements ? (
-                    <>
-                        <p className={style.totalCount}>
-                            {formatNum(totalCount)} {type} found
-                        </p>
-                        <p className={style.showingLast}>
-                            {customShowingText || 'Showing last'} {formatNum(totalElements)}
-                        </p>
-                    </>
-                ) : (
-                    <p>
-                        Showing {offset + 1} - {nextOffset > totalElements ? totalElements : nextOffset} out of{' '}
-                        {totalElements ?? '...'}
-                    </p>
-                )}
+        <div className={style.pagination}>
+            <div className={style.showing}>
+                <p>
+                    Showing {offset + 1} - {nextOffset > totalElements ? totalElements : nextOffset} out of{' '}
+                    {totalElements ?? '...'}
+                </p>
             </div>
-
             <div className={style.pager}>
                 <Pager page={currentPage + 1} count={pagesCount} onChange={(page) => onPageChange(page)} />
             </div>

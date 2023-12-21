@@ -2,14 +2,12 @@ import Image from 'next/image';
 import auroIcon from './img/auro.png';
 import { StaticEllipse } from '../staticEllipse';
 import disconnect from './img/disconnect.svg';
-import profile from './img/profile.svg';
 import copy from './img/copy.svg';
 
 import style from './index.module.css';
 import DropdownWrapper from '../dropdownWrapper';
 import { useRef, useState } from 'react';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
 import { Button } from '../../atoms/button';
 import { Variant } from '../../atoms/button/types';
 
@@ -19,7 +17,6 @@ const ButtonWithAddress = ({ address, onDisconnect }: { address: string; onDisco
         setIsShowDropdown(!isShowDropdown);
     };
     const refTest = useRef();
-    const router = useRouter();
 
     return (
         <>
@@ -43,16 +40,6 @@ const ButtonWithAddress = ({ address, onDisconnect }: { address: string; onDisco
                         >
                             <Image src={copy} alt="" className={style.icon} />
                             Copy address
-                        </div>
-                        <div
-                            className={classNames(style.item, 't-inter-semi-bold')}
-                            onClick={() => {
-                                setIsShowDropdown(false);
-                                router.push('https://minascan.io/testworld/account/' + address);
-                            }}
-                        >
-                            <Image src={profile} alt="" className={style.icon} />
-                            Profile
                         </div>
                         {onDisconnect && (
                             <div

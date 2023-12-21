@@ -31,10 +31,11 @@ export type TableConfig = {
 };
 
 export type LimitOptions = { text: string; value: number }[];
-export type TabSwitcherOptions = { text: string; value: string }[];
+export type TabSwitcherOptions = string[];
 
 export type DataTable = {
-    data: any[];
+    data?: any[];
+    content?: any[];
     size: number;
     totalPages: number;
     pageable: {
