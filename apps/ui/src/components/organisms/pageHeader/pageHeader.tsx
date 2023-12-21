@@ -17,6 +17,7 @@ const PageHeader = () => {
                 text="Stake"
                 variant={Variant.blue}
                 onClick={() => setOpenStaekeModul(true)}
+                disabled
             />
             <StakeModal open={openStakeModul} setShowPopup={() => setOpenStaekeModul(false)} />
         </div>
