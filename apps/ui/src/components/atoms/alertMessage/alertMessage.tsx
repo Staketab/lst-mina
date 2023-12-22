@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 export enum VariantsAlertMessage {
     WARNING = 'warning',
+    ERROR = 'error',
 }
 
 export const AlertMessage = ({

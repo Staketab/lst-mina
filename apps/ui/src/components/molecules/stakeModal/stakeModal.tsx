@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import useAuroWallet from '../../../hooks/useAuroWallet';
 import useAddressBalance from '../../../hooks/useAddressBalance';
 import { useMedia } from '../../../hooks';
 import PopupOverlay from '../popupOverlay';
@@ -8,6 +7,9 @@ import { ModalWrapper } from '../../atoms/modalWrapper';
 import ConfirmContent from './stakeContent/confirmContent';
 import SuccessContent from './stakeContent/successContent';
 import { defaultWallet } from '../../../comman/constants';
+import useAuroWalletCore from '../../../hooks/useAuroWalletCore';
+import { SendPaymentresponse } from '../../../hooks/useAuroWallet';
+import FaieldContent from './stakeContent/faieldContent';
 
 export type StakeParams = {
     address: string;
@@ -25,6 +27,7 @@ export enum ModalsTypes {
     CONFIRM = 'CONFIRM',
     SECCUSS = 'SECCUSS',
     STAKE = 'STAKE',
+    FAILED = 'failed',
 }
 
 const StakeModal = ({
@@ -39,16 +42,19 @@ const StakeModal = ({
 
     const {
         accountId,
+        sendResultMessage,
         actions: { onSendClick, resetSendResultMessage },
-    } = useAuroWallet();
+    } = useAuroWalletCore();
     const { balance } = useAddressBalance(accountId?.[0] ?? null);
+    console.log(useAuroWalletCore());
+    console.log(sendResultMessage);
 
     const {
         greater: { xs: xsScreen },
     } = useMedia();
 
-    const onStake = (): void => {
-        onSendClick(stakePayload?.amount, defaultWallet, stakePayload?.fee, 'stake');
+    const onStake = async (): Promise<SendPaymentresponse | void> => {
+        return await onSendClick(stakePayload?.amount, defaultWallet, stakePayload?.fee, 'stake');
     };
 
     const modalsController = useMemo(
@@ -92,10 +98,7 @@ const StakeModal = ({
                         case ModalsTypes.STAKE:
                             return (
                                 <StakeContent
-                                    avaliableAmount={
-                                        (balance !== null && balance !== undefined && Number(balance)) || 0
-                                    }
-                                    minAmount={0.000000001}
+                                    balance={balance ? balance : 0}
                                     setStakePayload={setStakePayload}
                                     {...commanProps}
                                 />
@@ -104,6 +107,8 @@ const StakeModal = ({
                             return <ConfirmContent {...commanProps} onStake={onStake} />;
                         case ModalsTypes.SECCUSS:
                             return <SuccessContent {...commanProps} />;
+                        case ModalsTypes.FAILED:
+                            return <FaieldContent {...commanProps} message={sendResultMessage?.message} />;
                     }
                 })}
             </ModalWrapper>

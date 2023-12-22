@@ -1,7 +1,17 @@
-.warning {
+.wrapper {
     display: flex;
     padding: 10px 16px;
     border-radius: 7px;
+}
+
+.icon {
+    display: block;
+    margin-right: 5px;
+}
+
+.error {
+    background-color: var(--col--secondary3);
+    color: var(--col--secondary4);
 }
 
 .warning {
@@ -9,7 +19,6 @@
     color: var(--col--secondary1);
 }
 
-.icon {
-    display: block;
-    margin-right: 5px;
+.error .icon {
+    display: none;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ResultMessage, WalletContextType } from './useAuroWallet';
+import { ResultMessage, SendPaymentresponse, WalletContextType } from './useAuroWallet';
 import { useLocalStorage } from './useLocalStorage';
 
 export default function useAuroWalletCore(): WalletContextType {
@@ -74,7 +74,7 @@ export default function useAuroWalletCore(): WalletContextType {
         });
     };
 
-    const onSendClick = async (amount: number, to: string, fee: number, memo: string): Promise<void> => {
+    const onSendClick = async (amount: number, to: string, fee: number, memo: string): Promise<SendPaymentresponse> => {
         const sendResult = await minaAdapter
             .sendPayment({
                 amount,
@@ -88,6 +88,7 @@ export default function useAuroWalletCore(): WalletContextType {
             message: sendResult.message,
             result: !!sendResult.hash,
         });
+        return sendResult;
     };
 
     useEffect(() => {

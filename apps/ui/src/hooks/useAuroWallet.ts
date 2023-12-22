@@ -11,6 +11,12 @@ export type WalletNetwork = {
     name: string;
 };
 
+export type SendPaymentresponse = {
+    hash?: string;
+    message?: string;
+    code?: number;
+};
+
 export type WalletContextType = {
     accountId: string | null;
     connectMessage: string | null;
@@ -21,7 +27,12 @@ export type WalletContextType = {
         onConnectClick: () => void;
         onDisconnectClick: () => void;
         onStakingClick: (to: string, memo: string, fee: number) => void;
-        onSendClick: (amount: number, to: string, fee: number, memo: string) => void;
+        onSendClick: (
+            amount: number,
+            to: string,
+            fee: number,
+            memo: string
+        ) => Promise<SendPaymentresponse> | Promise<void>;
         resetConnectMessage: () => void;
         resetSendResultMessage: () => void;
         resetStakingResultMessage: () => void;
@@ -37,7 +48,7 @@ const DEFAULT_CONTEXT: WalletContextType = {
     actions: {
         onConnectClick: () => console.warn('Provider not connected'),
         onStakingClick: () => console.warn('Provider not connected'),
-        onSendClick: () => console.warn('Provider not connected'),
+        onSendClick: () => Promise.resolve(),
         resetConnectMessage: () => console.warn('Provider not connected'),
         resetSendResultMessage: () => console.warn('Provider not connected'),
         resetStakingResultMessage: () => console.warn('Provider not connected'),

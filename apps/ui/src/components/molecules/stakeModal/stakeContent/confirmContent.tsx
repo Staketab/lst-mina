@@ -7,16 +7,24 @@ import { NETWORK } from '../../../../comman/constants';
 import { Button } from '../../../atoms/button';
 import { Variant } from '../../../atoms/button/types';
 import { ModalsController, ModalsTypes } from '../stakeModal';
+import { SendPaymentresponse } from '../../../../hooks/useAuroWallet';
 
 type ConfirmContentProps = {
     modalsController: ModalsController;
-    onStake: () => void;
+    onStake: () => Promise<SendPaymentresponse | void>;
 };
 
 const ConfirmContent = ({ modalsController, onStake }: ConfirmContentProps): JSX.Element => {
     const handleContinueButton = () => {
-        onStake();
-        modalsController.set(ModalsTypes.SECCUSS);
+        onStake()
+            .then((data: SendPaymentresponse) => {
+                if ('hash' in data) {
+                    modalsController.set(ModalsTypes.SECCUSS);
+                } else {
+                    modalsController.set(ModalsTypes.FAILED);
+                }
+            })
+            .catch(() => modalsController.set(ModalsTypes.FAILED));
     };
 
     return (

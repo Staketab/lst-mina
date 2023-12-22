@@ -14,10 +14,9 @@ import { NETWORK } from '../../../../comman/constants';
 import useAuroWalletCore from '../../../../hooks/useAuroWalletCore';
 
 type StakeContentProps = {
-    avaliableAmount: number;
-    minAmount: number;
     modalsController: ModalsController;
     setStakePayload: (value: { amount: number; fee: number }) => void;
+    balance: number;
 };
 
 type Fee = {
@@ -32,15 +31,11 @@ export const defaultFees: Fee[] = [
     { value: 0.2001, title: 'fast' },
 ];
 
-const StakeContent = ({
-    avaliableAmount,
-    minAmount,
-    modalsController,
-    setStakePayload,
-}: StakeContentProps): JSX.Element => {
+const StakeContent = ({ modalsController, setStakePayload, balance }: StakeContentProps): JSX.Element => {
     const { walletNetwork } = useAuroWalletCore();
 
     const defaultFee = defaultFees.find(({ isDefault }) => isDefault);
+    const minAmount = 0.000000001;
 
     const [amount, setAmount] = useState<number>(null);
     const [fee, setFee] = useState<number>(defaultFee.value);
@@ -58,7 +53,7 @@ const StakeContent = ({
         modalsController.set(ModalsTypes.CONFIRM);
     };
 
-    const insufficientFundError = amount > avaliableAmount && 'Insufficient Funds';
+    const insufficientFundError = amount > balance && 'Insufficient Funds';
     const lowerThanMinimumError = amount < minAmount && !!amount && 'Lower than minimum';
     const amountError = insufficientFundError || lowerThanMinimumError;
     const isShowAlert = walletNetwork?.chainId.slice(0, -1) !== NETWORK;
@@ -84,11 +79,9 @@ const StakeContent = ({
                 onChange={onChangeAmount}
             />
             {amountError && <p className={classNames(style.errorText, 't-inter-medium')}>{amountError}</p>}
-            {typeof avaliableAmount === 'number' && (
-                <div className={classNames(style.avaliableAmount, 't-inter-semi-bold')}>
-                    Avaliable: {formatNum(avaliableAmount, 9)} Mina
-                </div>
-            )}
+            <div className={classNames(style.avaliableAmount, 't-inter-semi-bold')}>
+                Avaliable: {formatNum(balance, 9)} Mina
+            </div>
             <div className={style.feeWrapper}>
                 <div className={'t-inter-medium'}>Fee</div>
                 <div className={'t-inter-semi-bold'}>{formatNum(fee, 9) || defaultFee.value}</div>
