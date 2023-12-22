@@ -17,6 +17,13 @@ export type SendPaymentresponse = {
     code?: number;
 };
 
+export type OnSendClick = (
+    amount: number,
+    to: string,
+    fee: number,
+    memo: string
+) => Promise<SendPaymentresponse> | Promise<void>;
+
 export type WalletContextType = {
     accountId: string | null;
     connectMessage: string | null;
@@ -27,12 +34,7 @@ export type WalletContextType = {
         onConnectClick: () => void;
         onDisconnectClick: () => void;
         onStakingClick: (to: string, memo: string, fee: number) => void;
-        onSendClick: (
-            amount: number,
-            to: string,
-            fee: number,
-            memo: string
-        ) => Promise<SendPaymentresponse> | Promise<void>;
+        onSendClick: OnSendClick;
         resetConnectMessage: () => void;
         resetSendResultMessage: () => void;
         resetStakingResultMessage: () => void;

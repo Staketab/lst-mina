@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Button } from '../../atoms/button';
 import { Variant } from '../../atoms/button/types';
 import { ConnectWalletButton } from '../../molecules/connectWalletButton';
-import { StakeModal } from '../../molecules/stakeModal';
-
+import StakeModalController from '../../molecules/stakeModal/StakeModalController';
 import style from './index.module.css';
 
 const PageHeader = () => {
@@ -20,7 +19,7 @@ const PageHeader = () => {
                 onClick={() => setOpenStaekeModul(true)}
                 disabled={isDisableStakeButton}
             />
-            <StakeModal open={openStakeModul} setShowPopup={() => setOpenStaekeModul(false)} />
+            <StakeModalController open={openStakeModul} closeModal={() => setOpenStaekeModul(false)} />
         </div>
     );
 };

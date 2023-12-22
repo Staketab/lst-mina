@@ -1,1 +1,1 @@
-export { default as StakeModal } from './stakeModal';
+export { default as StakeModalController } from './StakeModalController';
