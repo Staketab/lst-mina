@@ -7,11 +7,24 @@
     margin-left: 20px;
 }
 
+.balanceInfo {
+    display: flex;
+    flex-grow: 1;
+    gap: 5px;
+}
+
 .balance {
     color: var(--col--gray1);
     font-size: 12px;
     display: flex;
     align-items: center;
     gap: 5px;
-    flex-grow: 1;
+}
+
+.change {
+    color: var(--col--secondary5);
+}
+
+.changeMinus {
+    color: var(--col--secondary6);
 }

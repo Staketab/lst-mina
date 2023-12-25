@@ -27,7 +27,7 @@ body {
     --col--secondary3: #faf3f3;
     /* #597FFFCC */
     --col--secondary4: #7c5b56;
-    --col--secondary5: #eef1ff;
+    --col--secondary5: rgb(125, 211, 161);
     --col--secondary6: rgba(229, 103, 103, 0.87);
     /* rgba(255, 239, 238, 1) */
     --col--secondary7: #ffefee;

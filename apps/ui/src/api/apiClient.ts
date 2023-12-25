@@ -5,9 +5,9 @@ export class ApiClient {
         this.baseUrl = baseUrl;
     }
 
-    async fetchData(endpoint: string, options: RequestInit = {}): Promise<any> {
+    async fetchData(endpoint?: string, options?: RequestInit): Promise<any> {
         try {
-            const response = await fetch(`${this.baseUrl}${endpoint}`, {
+            const response = await fetch(`${this.baseUrl}${endpoint || ''}`, {
                 method: 'GET',
                 ...options,
             });
