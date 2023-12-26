@@ -66,8 +66,8 @@ export const testWorldConfig: TableConfig[] = [
         headerText: 'Validator',
         columnTemplate: 'accountTemplate',
         fields: {
-            name: 'valName',
-            img: 'valImg',
+            name: 'name',
+            img: 'img',
             pk: 'pk',
             noRedirect: true,
         },
@@ -77,7 +77,7 @@ export const testWorldConfig: TableConfig[] = [
         columnTemplate: 'amount',
         headerText: 'Stake',
         fields: {
-            value: 'stake',
+            value: 'amountStaked',
             additionValue: 'protocol',
         },
         sortBy: SORT_BY.STAKE,
@@ -87,7 +87,7 @@ export const testWorldConfig: TableConfig[] = [
         columnTemplate: 'string',
         headerText: 'Score',
         fields: {
-            value: 'score',
+            value: 'emptyValue',
         },
         sortBy: SORT_BY.SCORE,
     },
@@ -95,7 +95,7 @@ export const testWorldConfig: TableConfig[] = [
         colName: 'uptimeBySnark',
         columnTemplate: 'string',
         fields: {
-            value: 'uptimePercent',
+            value: 'emptyValue',
         },
         headerText: 'Uptime by Snark',
     },
@@ -103,7 +103,7 @@ export const testWorldConfig: TableConfig[] = [
         colName: 'votedMIPs',
         columnTemplate: 'string',
         fields: {
-            value: 'votedMIPs',
+            value: 'emptyValue',
         },
         headerText: '% Voted MIPs',
     },
@@ -111,7 +111,7 @@ export const testWorldConfig: TableConfig[] = [
         colName: 'win_Rate',
         columnTemplate: 'string',
         fields: {
-            value: 'winRateAvg',
+            value: 'emptyValue',
         },
         headerText: 'Win Rate',
     },

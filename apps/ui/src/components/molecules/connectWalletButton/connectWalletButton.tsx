@@ -6,21 +6,20 @@ import ButtonWithAddress from './buttonWithAddress';
 import ConnectButton from './connectButton';
 import WalletConnectPopUp from './walletConnectPopUp';
 import getWalletConfig from './hellper';
-import useAuroWalletCore from '../../../hooks/useAuroWalletCore';
+import useWallet from '../../../store/hooks/useWallet';
 
 const ConnectWalletButton = ({ handleAddress }: { handleAddress: (value: boolean) => void }) => {
     const [showPopup, setShowPopup] = useState(false);
-
     const {
         accountId,
         connectMessage,
-        actions: { onConnectClick, resetConnectMessage, onDisconnectClick },
-    } = useAuroWalletCore();
+        actions: { onConnectWallet, onDisconnectWallet, setConnectMessage },
+    } = useWallet();
 
     const walletName = accountId ? 'Auro Wallet' : null;
 
     const closeHandler = () => {
-        resetConnectMessage();
+        setConnectMessage(null);
         setShowPopup(false);
     };
 
@@ -39,7 +38,7 @@ const ConnectWalletButton = ({ handleAddress }: { handleAddress: (value: boolean
                     <ButtonWithAddress
                         address={address}
                         onDisconnect={async () => {
-                            await onDisconnectClick();
+                            await onDisconnectWallet();
                         }}
                     />
                 ) : (
@@ -50,7 +49,7 @@ const ConnectWalletButton = ({ handleAddress }: { handleAddress: (value: boolean
                 walletName={walletName}
                 connected={!!accountId}
                 rejected={connectMessage === 'user reject'}
-                connectFunction={onConnectClick}
+                connectFunction={onConnectWallet}
                 onClose={closeHandler}
                 list={getWalletConfig()}
                 show={showPopup}

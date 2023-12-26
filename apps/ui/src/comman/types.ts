@@ -72,3 +72,10 @@ export enum ORDER_BY {
     DESC = 'DESC',
     ASC = 'ASC',
 }
+
+export enum DATA_STATUS {
+    INITIAL = 'initial',
+    LOADING = 'loading',
+    SUCCESS = 'success',
+    ERROR = 'error',
+}

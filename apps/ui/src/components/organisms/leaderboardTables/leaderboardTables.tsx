@@ -1,25 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import Table from '../table';
-import { DataTable, ORDER_BY, SORT_BY, TabSwitcherOptions } from '../../../comman/types';
+import { DATA_STATUS, DataTable, ORDER_BY, SORT_BY } from '../../../comman/types';
 import { useTable } from '../../../hooks';
-import { ApiClient } from '../../../api/apiClient';
 import { ScoringConfig, testWorldConfig } from '../../../comman/config/tableConfig';
 import { limitOptions } from './constants';
 import { NETWORK } from '../../../comman/constants';
-
-const mainnetApi = new ApiClient('https://minascan.io/mainnet/api//api/scoring');
-const testworldApi = new ApiClient(`https://minascan.io/${NETWORK}/api//api/validators`);
+import { useGetTableDataQuery } from '../../../store/table/tableService';
+import useTableStore from '../../../store/hooks/useTable';
 
 type LeaderboardTablesProps = {
-    tabSwitcherOptions: TabSwitcherOptions;
     activeTab: string;
 };
 
-const LeaderboardTables = ({ activeTab, tabSwitcherOptions }: LeaderboardTablesProps): JSX.Element => {
-    const [dataTable, setDataTable] = useState<DataTable | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const isMainnetTab = activeTab === tabSwitcherOptions[0];
-
+const LeaderboardTables = ({ activeTab }: LeaderboardTablesProps): JSX.Element => {
+    const { table } = useTableStore();
     const {
         page,
         limit,
@@ -29,89 +23,73 @@ const LeaderboardTables = ({ activeTab, tabSwitcherOptions }: LeaderboardTablesP
         actions: { setPage, setLimit, setOrderBy, setSortBy },
     } = useTable({ defaultState: { limit: 100, orderBy: ORDER_BY.DESC, sortBy: SORT_BY.SCORE } });
 
-    const startFetchData = () => {
-        setDataTable(null);
-        setLoading(true);
+    const urlByTab = {
+        mainnet: {
+            requestData: {
+                url: `mainnet/api//api/scoring/?eligibleOnly=false`,
+                sortBy,
+                size: limit,
+            },
+            config: ScoringConfig,
+        },
+        testworld: {
+            requestData: {
+                url: `${NETWORK}/api//api/validators/?&searchStr=&stake=1000&epoch=3&isFullyUnlocked=true&type=active&isNotAnonymous=false&isWithFee=false&isVerifOnly=false`,
+                size: limit,
+                sortBy: 'amount_staked',
+            },
+
+            isTransform: true,
+            config: testWorldConfig,
+        },
     };
 
-    const fetchMainnetData = async () => {
-        startFetchData();
-        try {
-            const response: DataTable = await mainnetApi.fetchData(
-                `/?eligibleOnly=false&limit=${limit}&orderBy=${orderBy}&page=${page}&sortBy=${sortBy}`
-            );
-            setDataTable(response);
-        } catch (error) {
-            console.error('Error:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const fetchTestworldData = async () => {
-        startFetchData();
-        try {
-            const response: DataTable = await testworldApi.fetchData(
-                `/?page=${page}&sortBy=amount_staked&orderBy=${orderBy}&searchStr=&size=${limit}&stake=1000&epoch=3&isFullyUnlocked=true&type=active&isNotAnonymous=false&isWithFee=false&isVerifOnly=false`
-            );
-            const content = response?.content.map((item) => {
-                return {
-                    pk: item.pk,
-                    valName: item.name,
-                    valImg: item.img,
-                    stake: item.amountStaked,
-                    score: '-',
-                    uptimePercent: '-',
-                    votedMIPs: '-',
-                    winRateAvg: '-',
-                };
-            });
-
-            setDataTable({ ...response, data: content });
-        } catch (error) {
-            console.error('Error:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const requestForMainnetOrTestworlData = () => {
-        isMainnetTab ? fetchMainnetData() : fetchTestworldData();
-    };
-
-    useEffect(() => {
-        requestForMainnetOrTestworlData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit, orderBy, page, sortBy]);
-
-    const data = dataTable?.data?.map((item) => {
-        const votedMIPs = item.votedHistory
-            ? `${item?.votedHistory?.filter(({ hasVoted }) => !!hasVoted)?.length || 0}/${item.votedHistory.length}`
-            : '-';
-        return {
-            ...item,
-            votedMIPs: votedMIPs,
-            protocol: `MINA`,
-        };
+    const networkByTab = urlByTab[activeTab.toLowerCase()];
+    useGetTableDataQuery({
+        page,
+        orderBy,
+        ...networkByTab.requestData,
     });
+
+    const tableData = useMemo(() => {
+        let tableData = table.data?.data;
+        if ('content' in table.data) {
+            tableData = table.data?.content;
+        }
+        return {
+            ...table.data,
+            data: tableData?.map((item) => {
+                const votedMIPs = item.votedHistory
+                    ? `${item?.votedHistory?.filter(({ hasVoted }) => !!hasVoted)?.length || 0}/${
+                          item.votedHistory.length
+                      }`
+                    : '-';
+                return {
+                    ...item,
+                    votedMIPs: votedMIPs,
+                    protocol: `MINA`,
+                    emptyValue: null,
+                };
+            }),
+        };
+    }, [table]) as DataTable;
 
     useEffect(() => {
         resetFilter();
-        requestForMainnetOrTestworlData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeTab]);
 
     return (
         <Table
-            data={data}
-            isLoading={loading}
-            config={isMainnetTab ? ScoringConfig : testWorldConfig}
+            data={tableData?.data}
+            isLoading={table.status === DATA_STATUS.LOADING}
+            config={networkByTab?.config}
             currentPage={page}
             pageLimit={limit}
             sortBy={sortBy}
             orderBy={orderBy}
-            totalElements={dataTable?.totalElements}
-            pagesCount={dataTable?.totalPages}
+            totalElements={tableData?.totalElements}
+            pagesCount={tableData?.totalPages}
             onPageChange={(data) => {
                 setPage(data);
             }}

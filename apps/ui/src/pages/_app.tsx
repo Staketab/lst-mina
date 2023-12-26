@@ -6,17 +6,21 @@ import '../../public/fonts.css';
 import '../../public/typography.css';
 
 import type { AppProps } from 'next/app';
-import { useEffect } from 'react';
-import { WalletContext } from '../hooks/useAuroWallet';
-import useAuroWalletCore from '../hooks/useAuroWalletCore';
+import { useEffect, useState } from 'react';
 import OverlayWrapper from '../components/molecules/popupOverlay/overlayWrapper';
+import { Provider } from 'react-redux';
+import { AppStore, createStore } from '../store';
 
 export default function App({ Component, pageProps }: AppProps) {
-    const walletData = useAuroWalletCore();
+    const [store, setStore] = useState<AppStore>(null);
 
     const handleWindowResize = () => {
         document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
     };
+
+    if (!store) {
+        setStore(createStore());
+    }
 
     useEffect(() => {
         handleWindowResize();
@@ -28,9 +32,9 @@ export default function App({ Component, pageProps }: AppProps) {
     }, []);
 
     return (
-        <WalletContext.Provider value={walletData}>
+        <Provider store={store}>
             <OverlayWrapper />
             <Component {...pageProps} />
-        </WalletContext.Provider>
+        </Provider>
     );
 }

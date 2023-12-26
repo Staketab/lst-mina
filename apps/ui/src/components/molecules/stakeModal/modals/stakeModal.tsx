@@ -11,7 +11,7 @@ import { formatNum } from '../../../../comman/helpers';
 import { ModalsController, ModalsTypes } from '../StakeModalController';
 import { AlertMessage, VariantsAlertMessage } from '../../../atoms/alertMessage';
 import { NETWORK, defaultWallet } from '../../../../comman/constants';
-import useAuroWalletCore from '../../../../hooks/useAuroWalletCore';
+import useWallet from '../../../../store/hooks/useWallet';
 import StakeModalsWrapper from '../../stakeModalsWrapper/stakeModalsWrapper';
 import { OnSendClick } from '../../../../hooks/useAuroWallet';
 
@@ -35,7 +35,7 @@ export const defaultFees: Fee[] = [
 ];
 
 const StakeModal = ({ modalsController, onStake, balance, openedModals }: StakeContentProps): JSX.Element => {
-    const { walletNetwork } = useAuroWalletCore();
+    const { walletNetwork } = useWallet();
 
     const defaultFee = defaultFees.find(({ isDefault }) => isDefault);
     const minAmount = 0.000000001;

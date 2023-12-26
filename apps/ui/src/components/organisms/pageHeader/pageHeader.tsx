@@ -4,24 +4,26 @@ import { Button } from '../../atoms/button';
 import { Variant } from '../../atoms/button/types';
 import { ConnectWalletButton } from '../../molecules/connectWalletButton';
 import StakeModalController from '../../molecules/stakeModal/StakeModalController';
-import useAuroWalletCore from '../../../hooks/useAuroWalletCore';
-import useAddressBalance from '../../../hooks/useAddressBalance';
+import useWallet from '../../../store/hooks/useWallet';
 
 import style from './index.module.css';
 import { formatNum } from '../../../comman/helpers';
+import { useBalances } from '../../../store/hooks/useBalances';
 
 const PageHeader = () => {
     const [openStakeModul, setOpenStaekeModul] = useState<boolean>(false);
     const [isDisableStakeButton, setIsDisableStakeButton] = useState<boolean>(true);
-
-    const { accountId } = useAuroWalletCore();
-    const { balance } = useAddressBalance(accountId?.[0] ?? null);
+    const { accountId, balance: balanceByWallet } = useWallet();
+    const { balances } = useBalances();
 
     return (
         <div className={style.wrapper}>
             <div className={style.balanceInfo}>
                 <span className={classNames(style.balance, 't-inter-medium')}>
-                    Balance: {formatNum(balance, 3) || 0}
+                    Balance: {formatNum(String(balanceByWallet?.balance), 3) || 0}
+                </span>
+                <span className={classNames(style.balance, 't-inter-medium')}>
+                    LstMina: {formatNum(balances[accountId?.[0]], 3) || 0}
                 </span>
             </div>
             <ConnectWalletButton handleAddress={setIsDisableStakeButton} />
