@@ -1,7 +1,7 @@
 export class ApiClient {
     private baseUrl: string;
 
-    constructor(baseUrl: string) {
+    constructor(baseUrl?: string) {
         this.baseUrl = baseUrl;
     }
 
@@ -21,5 +21,9 @@ export class ApiClient {
             console.error('Error:', error);
             throw error;
         }
+    }
+
+    set setBaseUrl(value: string) {
+        this.baseUrl = value;
     }
 }
