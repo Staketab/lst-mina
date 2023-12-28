@@ -5,12 +5,14 @@ import { Header } from '../components/atoms/header';
 import { TabSwitcher } from '../components/atoms/tabSwitcher';
 import PageHeader from '../components/organisms/pageHeader/pageHeader';
 import { LeaderboardTables } from '../components/organisms/leaderboardTables';
-
-import styles from './index.module.css';
 import useWallet from '../store/hooks/useWallet';
 import { useClient } from '../store/hooks/useClient';
 import { useObserveBalance } from '../hooks/useObserveBalance';
 import { useGetWalletBalanceQuery } from '../store/wallet/walletService';
+import { usePollBlockHeight } from '../hooks/usePollBlockHeight';
+import { POLLING_INTERVAL } from '../comman/constants';
+
+import styles from './index.module.css';
 
 const tabSwitcherOptions: TabSwitcherOptions = ['Mainnet', 'Testworld'];
 
@@ -18,7 +20,7 @@ export default function Home(): JSX.Element {
     const [activTab, setActiveTab] = useState(tabSwitcherOptions[0]);
     const client = useClient();
     const { accountId } = useWallet();
-    useGetWalletBalanceQuery(accountId?.[0]);
+    useGetWalletBalanceQuery(accountId?.[0], { pollingInterval: POLLING_INTERVAL });
     const handleTabSwitcher = (value: string) => {
         setActiveTab(value);
     };
@@ -26,6 +28,7 @@ export default function Home(): JSX.Element {
         actions: { initAccount },
     } = useWallet();
     useObserveBalance();
+    usePollBlockHeight();
 
     useEffect(() => {
         if (window.localStorage.getItem('isConnectedAuro') === 'true') {

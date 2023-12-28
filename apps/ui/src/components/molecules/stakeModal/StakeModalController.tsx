@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import StakeModal from './modals/stakeModal';
 import SuccessModal from './modals/successModal';
 import FaieldModal from './modals/faieldModal';
-import useWallet from '../../../store/hooks/useWallet';
+import useWallet, { OnSend } from '../../../store/hooks/useWallet';
 
 export type StakeParams = {
     address: string;
@@ -24,12 +24,24 @@ export enum ModalsTypes {
 
 const StakeModalController = ({ open, closeModal }: { open?: boolean; closeModal: () => void }): JSX.Element => {
     const [openedModals, setOpenedModals] = useState<ModalsTypes[]>([]);
+    const [stakeAmount, setStakeAmount] = useState<number>(null);
 
     const {
         sendResultMessage,
         balance,
         actions: { onSend, setSendResultMessage },
     } = useWallet();
+
+    const handleStake: OnSend = async (amount, defaultWallet, fee, memo) => {
+        let response;
+        try {
+            response = await onSend(amount, defaultWallet, fee, memo);
+            setStakeAmount(amount);
+        } catch (error) {
+            console.error(error);
+        }
+        return response;
+    };
 
     const modalsController = useMemo(
         () => ({
@@ -64,9 +76,15 @@ const StakeModalController = ({ open, closeModal }: { open?: boolean; closeModal
                 const commanProps = { modalsController, open: true, key: m, openedModals: openedModals };
                 switch (m) {
                     case ModalsTypes.STAKE:
-                        return <StakeModal balance={balance ? balance.balance : 0} onStake={onSend} {...commanProps} />;
+                        return (
+                            <StakeModal
+                                balance={balance ? balance.balance : 0}
+                                onStake={handleStake}
+                                {...commanProps}
+                            />
+                        );
                     case ModalsTypes.SECCUSS:
-                        return <SuccessModal {...commanProps} />;
+                        return <SuccessModal {...commanProps} stakeAmount={stakeAmount} />;
                     case ModalsTypes.FAILED:
                         return <FaieldModal {...commanProps} message={sendResultMessage?.message} />;
                 }

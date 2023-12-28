@@ -2,15 +2,19 @@ import { useEffect } from 'react';
 import { useBalances } from '../store/hooks/useBalances';
 import { useClient } from '../store/hooks/useClient';
 import useWallet from '../store/hooks/useWallet';
+import { useChain } from '../store/hooks/useChain';
 
 export const useObserveBalance = () => {
     const client = useClient();
-    const { accountId } = useWallet();
+    const wallet = useWallet();
     const balances = useBalances();
+    const {
+        chain: { height },
+    } = useChain();
 
     useEffect(() => {
-        if (!client?.definition || !accountId?.[0]) return;
+        if (!client?.client || !wallet.accountId) return;
 
-        balances.loadBalance(client, accountId?.[0]);
-    }, [client.client, accountId?.[0]]);
+        balances.loadBalance(client.client, wallet.accountId?.[0]);
+    }, [client.client, wallet.accountId, height]);
 };

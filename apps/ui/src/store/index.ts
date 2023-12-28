@@ -3,18 +3,22 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import { tableService } from './table/tableService';
 import { walletService } from './wallet/walletService';
+import { chainService } from './chain/chainService';
 import tableReducer from './table/tableSlice';
-import walletreducer from './wallet/walletSlice';
+import walletReducer from './wallet/walletSlice';
 import clientReducer from './client/clientSlice';
 import balancesReducer from './balances/balancesSlice';
+import chainReducer from './chain/chainSlice';
 
 export const rootReducer = combineReducers({
     table: tableReducer,
-    wallet: walletreducer,
+    wallet: walletReducer,
     client: clientReducer,
     balances: balancesReducer,
+    chain: chainReducer,
     [tableService.reducerPath]: tableService.reducer,
     [walletService.reducerPath]: walletService.reducer,
+    [chainService.reducerPath]: chainService.reducer,
 });
 
 export const createStore = (_initialValue = {}) => {
@@ -23,7 +27,7 @@ export const createStore = (_initialValue = {}) => {
         preloadedState: { ..._initialValue },
         //@ts-ignore
         middleware: (getDefaultMiddleware) => {
-            const middlewares = [tableService.middleware, walletService.middleware];
+            const middlewares = [tableService.middleware, walletService.middleware, chainService.middleware];
             return getDefaultMiddleware({
                 thunk: true,
                 serializableCheck: false,

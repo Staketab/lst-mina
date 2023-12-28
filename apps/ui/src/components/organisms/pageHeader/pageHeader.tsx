@@ -23,7 +23,7 @@ const PageHeader = () => {
                     Balance: {formatNum(String(balanceByWallet?.balance), 3) || 0}
                 </span>
                 <span className={classNames(style.balance, 't-inter-medium')}>
-                    LstMina: {formatNum(balances[accountId?.[0]], 3) || 0}
+                    stMina: {formatNum(balances[accountId?.[0]] || 0, 3) || 0}
                 </span>
             </div>
             <ConnectWalletButton handleAddress={setIsDisableStakeButton} />

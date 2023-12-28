@@ -11,15 +11,14 @@ import { formatNum } from '../../../../comman/helpers';
 import { ModalsController, ModalsTypes } from '../StakeModalController';
 import { AlertMessage, VariantsAlertMessage } from '../../../atoms/alertMessage';
 import { NETWORK, defaultWallet } from '../../../../comman/constants';
-import useWallet from '../../../../store/hooks/useWallet';
+import useWallet, { OnSend } from '../../../../store/hooks/useWallet';
 import StakeModalsWrapper from '../../stakeModalsWrapper/stakeModalsWrapper';
-import { OnSendClick } from '../../../../hooks/useAuroWallet';
 
 type StakeContentProps = {
     modalsController: ModalsController;
     balance: number;
     openedModals: ModalsTypes[];
-    onStake: OnSendClick;
+    onStake: OnSend;
 };
 
 type Fee = {
@@ -48,7 +47,7 @@ const StakeModal = ({ modalsController, onStake, balance, openedModals }: StakeC
         setAmount(value ? Number(value) : null);
     };
 
-    const onNext = (): void => {
+    const onNext = () => {
         onStake(amount, defaultWallet, fee, 'stake')
             .then((data) => {
                 if ('hash' in data) {

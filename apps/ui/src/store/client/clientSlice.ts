@@ -8,10 +8,8 @@ export const clientSlice = createSlice({
     name: 'client',
     initialState,
     reducers: {
-        setClient: (_, action: PayloadAction<IClientData>) => {
-            return {
-                ...action.payload,
-            };
+        setClient: (state, action: PayloadAction<IClientData>) => {
+            state.client = action.payload;
         },
     },
 });

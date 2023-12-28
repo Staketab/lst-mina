@@ -5,6 +5,7 @@ import { RootState, useAppDispatch } from '..';
 import * as WalletStore from '../wallet/walletSlice';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useEffect } from 'react';
+import { PendingTransaction, UnsignedTransaction } from '@proto-kit/sequencer';
 
 export type SendPaymentresponse = {
     hash?: string;
@@ -12,12 +13,7 @@ export type SendPaymentresponse = {
     code?: number;
 };
 
-export type OnSend = (
-    amount: number,
-    to: string,
-    fee: number,
-    memo: string
-) => Promise<SendPaymentresponse> | Promise<void>;
+export type OnSend = (amount: number, to: string, fee: number, memo: string) => Promise<SendPaymentresponse>;
 
 interface IUseGlobal extends WalletStore.IWalletData {
     actions: {
@@ -29,6 +25,7 @@ interface IUseGlobal extends WalletStore.IWalletData {
         handleChainChange: (value: string) => void;
         initAccount: () => Promise<void>;
         setConnectMessage: (value: string | null) => void;
+        addPendingTransaction: (value: UnsignedTransaction | PendingTransaction | undefined) => void;
         setSendResultMessage: (
             value: {
                 hash?: string;
@@ -44,7 +41,10 @@ export default function useWallet(): IUseGlobal {
     const [, setIsConnectedAuro] = useLocalStorage('isConnectedAuro');
 
     const setWalletData = (payload: WalletStore.IWalletData) => dispatch(WalletStore.setWalletData(payload));
+    const addPendingTransaction = (payload) => dispatch(WalletStore.addPendingTransaction(payload));
+    // @ts-ignore
     const walletData = useSelector<RootState, WalletStore.IWalletData>((state) => state.wallet);
+
     const setConnectMessage = (connectMessage) => setWalletData({ ...walletData, connectMessage: connectMessage });
     const setSendResultMessage = (sendResultMessage) =>
         setWalletData({ ...walletData, sendResultMessage: sendResultMessage });
@@ -163,6 +163,7 @@ export default function useWallet(): IUseGlobal {
             initAccount,
             setConnectMessage,
             setSendResultMessage,
+            addPendingTransaction,
         },
     };
 }

@@ -22,8 +22,7 @@ export const useClient = (): IUseClient => {
 
     const startClient = async () => {
         await clientChain.start();
-
-        setClient({ ...clientChain, query: clientChain['query'] });
+        setClient(Object.assign(clientChain));
     };
 
     return {
