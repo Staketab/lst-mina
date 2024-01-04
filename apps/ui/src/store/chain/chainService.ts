@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getConfig } from '../../../config/config';
 
 export const chainService = createApi({
     reducerPath: 'chainService',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8080',
+        baseUrl: getConfig().graphql,
         fetchFn: fetch,
     }),
     endpoints: (builder) => ({
