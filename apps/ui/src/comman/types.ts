@@ -31,9 +31,11 @@ export type TableConfig = {
 };
 
 export type LimitOptions = { text: string; value: number }[];
+export type TabSwitcherOptions = string[];
 
 export type DataTable = {
-    data: any[];
+    data?: any[];
+    content?: any[];
     size: number;
     totalPages: number;
     pageable: {
@@ -69,4 +71,11 @@ export enum SORT_BY {
 export enum ORDER_BY {
     DESC = 'DESC',
     ASC = 'ASC',
+}
+
+export enum DATA_STATUS {
+    INITIAL = 'initial',
+    LOADING = 'loading',
+    SUCCESS = 'success',
+    ERROR = 'error',
 }

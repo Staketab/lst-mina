@@ -6,12 +6,21 @@ import '../../public/fonts.css';
 import '../../public/typography.css';
 
 import type { AppProps } from 'next/app';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import OverlayWrapper from '../components/molecules/popupOverlay/overlayWrapper';
+import { Provider } from 'react-redux';
+import { AppStore, createStore } from '../store';
 
 export default function App({ Component, pageProps }: AppProps) {
+    const [store, setStore] = useState<AppStore>(null);
+
     const handleWindowResize = () => {
         document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
     };
+
+    if (!store) {
+        setStore(createStore());
+    }
 
     useEffect(() => {
         handleWindowResize();
@@ -22,5 +31,10 @@ export default function App({ Component, pageProps }: AppProps) {
         };
     }, []);
 
-    return <Component {...pageProps} />;
+    return (
+        <Provider store={store}>
+            <OverlayWrapper />
+            <Component {...pageProps} />
+        </Provider>
+    );
 }

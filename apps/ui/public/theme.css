@@ -9,4 +9,61 @@ body {
     --link-active-hover-color: #587efc;
     --link-inactive-color: #636465;
     --link-inactive-hover-color: #636465;
+    --col--dark2: rgba(0, 0, 0, 0.8);
+    --col--gray1: rgba(0, 0, 0, 0.6);
+    --col--gray2: rgba(247, 248, 250, 1);
+    /* rgba(249, 249, 249, 1) */
+    --col--gray3: #f9f9f9;
+    --col--gray4: rgba(0, 0, 0, 0.3);
+    /* rgba(246, 248, 250, 1) */
+    --col--gray5: #f6f8fa;
+    --col--gray6: rgba(43, 45, 51, 0.8);
+    --col--gray7: rgba(43, 45, 51, 0.6);
+    /* rgba(150, 151, 153, 1) */
+    --col--gray9: #969799;
+    /* rgba(248, 250, 253, 1)*/
+    --col--secondary1: #73604b;
+    --col--secondary2: #faf6f3;
+    --col--secondary3: #faf3f3;
+    /* #597FFFCC */
+    --col--secondary4: #7c5b56;
+    --col--secondary5: rgb(125, 211, 161);
+    --col--secondary6: rgba(229, 103, 103, 0.87);
+    /* rgba(255, 239, 238, 1) */
+    --col--secondary7: #ffefee;
+    --col--secondary8: rgba(57, 99, 255, 0.5);
+
+    /* BUTTON */
+    /* rgba(52, 89, 231, 1) */
+    --col--button2: #3459e7;
+    /* rgba(56, 97, 251, 0.30) */
+    --col--button3: #3861fb4d;
+    /* #3963FF4D */
+    --col--button4: rgba(57, 99, 255, 0.3);
+    /* rgba(232, 236, 250, 1) */
+    --col--button5: #e8ecfa;
+    /* #D7DFFA */
+    --col--button6: rgba(215, 223, 250, 1);
+    /* #F0F3FF */
+    --col--button7: rgba(240, 243, 255, 1);
+    /* rgba(251, 226, 227, 1) */
+    --col--button8: #fbe2e3;
+    /* #EA3943 */
+    --col--button9: rgba(234, 57, 67, 1);
+    /* rgba(245, 215, 217, 1) */
+    --col--button10: #f5d7d9;
+    /* #F0CDCF */
+    --col--button11: rgba(240, 205, 207, 1);
+    /* rgba(251, 215, 217, 1) */
+    --col--button12: #fbd7d9;
+    /* rgba(234, 57, 67, 0.3) */
+    --col--button13: #ea39434d;
+    /* rgba(221, 224, 235, 1) */
+    --col--button14: #dde0eb;
+    /* rgba(245, 247, 249, 1) */
+    --col--button15: #f5f7f9;
+    /* rgba(237, 241, 245, 1) */
+    --col--button16: #edf1f5;
+    /* #5E62714D */
+    --col--button17: rgba(94, 98, 113, 0.3);
 }

@@ -1,0 +1,82 @@
+.stakeContentHeader {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.avaliableAmount {
+    margin: 11px 0 24px 0;
+    color: var(--col--dark2);
+    font-size: 13px;
+}
+
+.feeWrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.feeWrapper > div:first-child {
+    color: var(--col--dark);
+}
+
+.errorText {
+    color: var(--col--secondary6);
+    font-size: 13px;
+    margin-top: 11px;
+}
+
+.feeBlock {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.feeBlock button {
+    width: 100%;
+}
+
+.buttonsBlock {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
+}
+
+.backIcon {
+    position: absolute;
+    cursor: pointer;
+}
+
+.closeIcon {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    cursor: pointer;
+}
+
+.closeIcon:hover {
+    opacity: 0.7;
+}
+
+.successIcon {
+    display: block;
+    margin: 30px auto;
+}
+
+.successContent button {
+    margin: 0 auto;
+}
+
+.successContent p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stakeContentBody {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.alertMessage {
+    margin-bottom: 12px;
+}

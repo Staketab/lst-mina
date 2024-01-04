@@ -1,66 +1,41 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { DataTable, LimitOptions, ORDER_BY, SORT_BY } from '../comman/types';
-import { useTable } from '../hooks';
-import Table from '../components/organisms/table';
-import { ScoringConfig } from '../comman/config/tableConfig';
-import styles from './index.module.css';
+import { TabSwitcherOptions } from '../comman/types';
 import { Header } from '../components/atoms/header';
+import { TabSwitcher } from '../components/atoms/tabSwitcher';
+import PageHeader from '../components/organisms/pageHeader/pageHeader';
+import { LeaderboardTables } from '../components/organisms/leaderboardTables';
+import useWallet from '../store/hooks/useWallet';
+import { useClient } from '../store/hooks/useClient';
+import { useObserveBalance } from '../hooks/useObserveBalance';
+import { useGetWalletBalanceQuery } from '../store/wallet/walletService';
+import { usePollBlockHeight } from '../hooks/usePollBlockHeight';
+import { POLLING_INTERVAL } from '../comman/constants';
 
-export const limitOptions: LimitOptions = [
-    { text: '50', value: 50 },
-    { text: '100', value: 100 },
-    { text: '200', value: 200 },
-];
+import styles from './index.module.css';
 
-export default function Home() {
-    const [dataTable, setDataTable] = useState<DataTable | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const {
-        page,
-        limit,
-        orderBy,
-        sortBy,
-        actions: { setPage, setLimit, setOrderBy, setSortBy },
-    } = useTable({ defaultState: { page: 0, limit: 100, orderBy: ORDER_BY.DESC, sortBy: SORT_BY.SCORE } });
+const tabSwitcherOptions: TabSwitcherOptions = ['Mainnet', 'Testworld'];
 
-    const fetchData = async () => {
-        setLoading(true);
-        try {
-            const response = await fetch(
-                `https://minascan.io/mainnet/api//api/scoring/?eligibleOnly=false&limit=${limit}&orderBy=${orderBy}&page=${page}&sortBy=${sortBy}`,
-                {
-                    method: 'GET',
-                }
-            );
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            setDataTable(data);
-        } catch (error) {
-            console.error('Error:', error);
-        } finally {
-            setLoading(false);
-        }
+export default function Home(): JSX.Element {
+    const [activTab, setActiveTab] = useState(tabSwitcherOptions[0]);
+    const client = useClient();
+    const { accountId } = useWallet();
+    useGetWalletBalanceQuery(accountId?.[0], { pollingInterval: POLLING_INTERVAL });
+    const handleTabSwitcher = (value: string) => {
+        setActiveTab(value);
     };
+    const {
+        actions: { initAccount },
+    } = useWallet();
+    useObserveBalance();
+    usePollBlockHeight();
 
     useEffect(() => {
-        fetchData();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [limit, orderBy, page, sortBy]);
-
-    const data = dataTable?.data?.map((item) => {
-        const votedMIPs = item.votedHistory
-            ? `${item?.votedHistory?.filter(({ hasVoted }) => !!hasVoted)?.length || 0}/${item.votedHistory.length}`
-            : '-';
-        return {
-            ...item,
-            votedMIPs: votedMIPs,
-            protocol: `MINA`,
-        };
-    });
+        if (window.localStorage.getItem('isConnectedAuro') === 'true') {
+            initAccount();
+        }
+        client.startClient();
+    }, []);
 
     return (
         <>
@@ -70,31 +45,10 @@ export default function Home() {
                 <link rel="icon" href="/assets/favicon.ico" />
             </Head>
             <div className={styles.content}>
+                <PageHeader />
                 <Header title="Leaderboard" />
-                <Table
-                    data={data}
-                    isLoading={loading}
-                    config={ScoringConfig}
-                    currentPage={page}
-                    pageLimit={limit}
-                    sortBy={sortBy}
-                    orderBy={orderBy}
-                    totalElements={dataTable?.totalElements}
-                    pagesCount={dataTable?.totalPages}
-                    onPageChange={(data) => {
-                        setPage(data);
-                    }}
-                    onLimitChange={(data) => {
-                        setLimit(data);
-                    }}
-                    onOrderChange={(data) => {
-                        setOrderBy(data);
-                    }}
-                    onSortChange={(data) => {
-                        setSortBy(data);
-                    }}
-                    limitOptions={limitOptions}
-                />
+                <TabSwitcher options={tabSwitcherOptions} onClick={handleTabSwitcher} />
+                <LeaderboardTables activeTab={activTab} />
             </div>
         </>
     );

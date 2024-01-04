@@ -5,7 +5,14 @@ import ArrowIcon from './img/ArrowIcon.svg';
 import { useMedia } from '../../../hooks';
 import Image from 'next/image';
 
-const Pager = ({ page, count = 1, onChange, pageNeighbours = 1 }) => {
+type PagerProps = {
+    page: number;
+    count?: number;
+    onChange: (value: number) => void;
+    pageNeighbours?: number;
+};
+
+const Pager = ({ page, count = 1, onChange, pageNeighbours = 1 }: PagerProps): JSX.Element => {
     const showPrevButton = page !== 1;
     const showNextButton = count !== page;
     const media = useMedia();

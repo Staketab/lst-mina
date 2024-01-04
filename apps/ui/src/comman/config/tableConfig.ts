@@ -59,3 +59,60 @@ export const ScoringConfig: TableConfig[] = [
         headerText: 'Win Rate',
     },
 ];
+
+export const testWorldConfig: TableConfig[] = [
+    {
+        colName: 'stake',
+        headerText: 'Validator',
+        columnTemplate: 'accountTemplate',
+        fields: {
+            name: 'name',
+            img: 'img',
+            pk: 'pk',
+            noRedirect: true,
+        },
+    },
+    {
+        colName: 'stake',
+        columnTemplate: 'amount',
+        headerText: 'Stake',
+        fields: {
+            value: 'amountStaked',
+            additionValue: 'protocol',
+        },
+        sortBy: SORT_BY.STAKE,
+    },
+    {
+        colName: 'score',
+        columnTemplate: 'string',
+        headerText: 'Score',
+        fields: {
+            value: 'emptyValue',
+        },
+        sortBy: SORT_BY.SCORE,
+    },
+    {
+        colName: 'uptimeBySnark',
+        columnTemplate: 'string',
+        fields: {
+            value: 'emptyValue',
+        },
+        headerText: 'Uptime by Snark',
+    },
+    {
+        colName: 'votedMIPs',
+        columnTemplate: 'string',
+        fields: {
+            value: 'emptyValue',
+        },
+        headerText: '% Voted MIPs',
+    },
+    {
+        colName: 'win_Rate',
+        columnTemplate: 'string',
+        fields: {
+            value: 'emptyValue',
+        },
+        headerText: 'Win Rate',
+    },
+];
