@@ -108,7 +108,7 @@ const StakeModal = ({ modalsController, onStake, balance, openedModals }: StakeC
 
                 <div className={style.buttonsBlock}>
                     <Button text="Cancel" onClick={() => modalsController.close()} variant={Variant.cancel} />
-                    <Button text="Next" onClick={onNext} variant={Variant.blue} disabled={!!amountError || !amount} />
+                    <Button text="Next" onClick={onNext} variant={Variant.blue} />
                 </div>
             </div>
         </StakeModalsWrapper>

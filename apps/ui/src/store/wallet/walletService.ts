@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { NETWORK, PUBLIC_APP_BASE_URL } from '../../comman/constants';
+import { PUBLIC_APP_BASE_URL } from '../../comman/constants';
 
 export const walletService = createApi({
     reducerPath: 'walletService',
@@ -11,7 +11,7 @@ export const walletService = createApi({
         getWalletBalance: builder.query({
             query: (address) => {
                 return {
-                    url: `/${NETWORK}/api//api/core/accounts/${address}/balance`,
+                    url: `/qanet/api//api/core/accounts/${address}/balance`,
                     method: 'GET',
                 };
             },
