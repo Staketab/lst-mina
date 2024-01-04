@@ -1,0 +1,115 @@
+.copyIcon {
+    cursor: pointer;
+    fill: #c4c4c4;
+    width: 16px;
+    height: 16px;
+}
+
+@keyframes slideAnimation {
+    0% {
+        top: calc(50% - 6px);
+    }
+
+    30% {
+        top: calc(50% - 6px + 40px);
+    }
+    70% {
+        top: calc(50% - 6px + 40px);
+    }
+    100% {
+        top: calc(50% - 6px);
+    }
+}
+
+@keyframes bounceAnimation {
+    0% {
+        transform: scale(0);
+    }
+    25% {
+        transform: scale(1.08);
+    }
+    40% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+.animated {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f1f5;
+    overflow: hidden;
+    transition: filter 200ms ease;
+    cursor: pointer;
+}
+
+.animated .original {
+    fill: #a9b5ff;
+    position: absolute;
+    left: calc(50% - 6px);
+    margin: 0;
+}
+.animated .original:hover {
+    fill: #587efc;
+}
+
+.animated .pressed {
+    position: absolute;
+    left: calc(50% - 8px);
+    top: calc(50% - 8px);
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    animation: bounceAnimation 1.35s ease;
+}
+
+.animated .animationSlide {
+    animation: slideAnimation 1.5s ease;
+}
+
+.desktop {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    background-color: transparent;
+    margin-left: 2px;
+}
+
+.desktop .original {
+    fill: #a9b5ff;
+    position: absolute;
+    margin: 0;
+}
+
+.desktop .original:hover {
+    fill: #587efc;
+}
+
+.desktop .pressed {
+    position: absolute;
+    left: calc(50% - 8px);
+    top: calc(50% - 8px);
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    animation: bounceAnimation 1.35s ease;
+}
+
+.desktop .animationSlide {
+    animation: slideAnimation 1.5s ease;
+}

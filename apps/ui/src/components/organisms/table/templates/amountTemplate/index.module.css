@@ -1,0 +1,7 @@
+.addionValue {
+    font-size: 10px;
+    color: var(--col--gray4);
+    line-height: 16px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}

@@ -1,0 +1,220 @@
+.walletConnectPopUp {
+    width: 80vw;
+    max-width: 820px;
+    background-color: #fff;
+    border-radius: 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .walletConnectPopUp {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 576px) {
+    .walletConnectPopUp {
+        width: 100vw;
+        display: flex;
+        flex-direction: column-reverse;
+        border-radius: 24px 24px 0 0;
+    }
+}
+
+.header {
+    background-repeat: no-repeat;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    padding: 24px;
+}
+
+.header .heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+@media (max-width: 592px) {
+    .header .heading {
+        margin-bottom: 8px;
+    }
+}
+
+.title {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.header .progressContainer {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.header .message {
+    color: var(--col--dark);
+    line-height: 22px;
+    text-align: center;
+    max-width: 95%;
+    margin: 0 auto;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.header .link {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: center;
+}
+
+.mobileHeader {
+    padding: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    border-bottom: 1px solid var(--col--gray8);
+}
+
+.mobileHeader .logo {
+    width: 48px;
+    height: 48px;
+    padding: 8px;
+}
+
+.mobileHeader .title {
+    line-height: 26px;
+}
+
+.mobileHeader .message {
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.mobileHeader .closeBtn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -8px;
+    margin-right: -8px;
+    cursor: pointer;
+}
+
+.closeBtn img {
+    width: 24px;
+    height: 24px;
+    fill: rgba(0, 0, 0, 0.3);
+    transition: fill ease 200ms;
+    cursor: pointer;
+}
+
+.closeBtn:hover img {
+    fill: var(--col--gray1);
+}
+
+.stepProgressPlate {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.stepProgressLine {
+    background-color: rgba(232, 233, 235, 1);
+    height: 4px;
+    width: 100%;
+}
+
+.stepProgressLineColor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 2;
+    transition: all ease 400ms;
+}
+
+.stepProgressDot {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(232, 233, 235, 1);
+    width: 14px;
+    height: 14px;
+    z-index: 3;
+}
+
+.stepProgressCircle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transition: all ease 400ms;
+}
+
+.screen {
+    padding: 24px;
+}
+
+.walletListCard {
+    background-color: var(--col--light);
+    border: 1px solid rgba(240, 241, 245, 1);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.walletListCard .Name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+}
+
+.walletListCard .Icon {
+    width: 36px;
+    height: 36px;
+}
+
+@media (max-width: 576px) {
+    .walletListCard {
+        border: none;
+        padding: 0;
+        background-color: transparent;
+        flex-direction: column;
+        gap: 8px;
+        width: max-content;
+    }
+
+    .walletListCard .Name {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px;
+        text-align: center;
+    }
+
+    .walletListCard .Icon {
+        width: calc(40px + 12px * 2);
+        height: calc(40px + 12px * 2);
+        padding: 12px;
+        border: 1px solid #f0f1f5;
+        border-radius: 12px;
+    }
+}

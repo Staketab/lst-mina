@@ -1,0 +1,24 @@
+.loader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f1f5;
+}
+
+.ValidatedIcon {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 0;
+    top: -1px;
+}
+
+.ValidatedIcon circle {
+    fill: #7dd3a1;
+}

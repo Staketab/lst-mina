@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./fonts/Inter.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('./fonts/Inter.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter Medium';
+    src: url('./fonts/Inter.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter Semi Bold';
+    src: url('./fonts/Inter.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Robot Mono';
+    src: url('./fonts/RobotoMono.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Robot Mono Medium';
+    src: url('./fonts/RobotoMono.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Robot Mono Semi Bold';
+    src: url('./fonts/RobotoMono.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Robot Mono Bold';
+    src: url('./fonts/RobotoMono.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+:root {
+    --ff--replacement-font: Arial, sans-serif;
+    --ff--inter-regular: Inter, var(--ff--replacement-font);
+    --ff--inter-bold: Inter Bold, var(--ff--replacement-font);
+    --ff--inter-medium: Inter Medium, var(--ff--replacement-font);
+    --ff--inter-semi-bold: Inter Semi Bold, var(--ff--replacement-font);
+
+    --ff--robot-regular: Robot Mono, var(--ff--replacement-font);
+    --ff--robot-medium: Robot Mono Medium, var(--ff--replacement-font);
+    --ff--robot-semi-bold: Robot Mono Semi Bold, var(--ff--replacement-font);
+    --ff--robot-bold: Robot Mono Bold, var(--ff--replacement-font);
+}

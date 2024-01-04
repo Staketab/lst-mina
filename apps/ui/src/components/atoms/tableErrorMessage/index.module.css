@@ -1,0 +1,53 @@
+.errorTitle {
+    margin: 16px 0 0px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.errorTitleWithBtn {
+    margin: 16px 0 8px;
+}
+
+.descriptionError {
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+}
+
+.errorScreen {
+    padding: 48px 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.button {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #597fff;
+    background-color: #eef1ff;
+    border: 1px solid #597fff;
+    border-radius: 7px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+}
+
+.button:last-child {
+    margin: 0;
+}
+
+.button:hover {
+    background: #e8ecfa;
+    cursor: pointer;
+}
+
+.button:active {
+    background: #d7dffa;
+}
+
+.button svg {
+    margin-right: 4px;
+    fill: #597fff;
+}

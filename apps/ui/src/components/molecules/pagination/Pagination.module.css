@@ -1,0 +1,76 @@
+.pagination {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 12;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px 16px 16px;
+    user-select: none;
+}
+
+.showing {
+    line-height: 32px;
+    flex-basis: 25%;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.showingMobile {
+    flex-basis: auto;
+}
+
+.select {
+    flex-basis: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.select span {
+    margin-right: 8px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.totalCount {
+    margin-bottom: 4px;
+    line-height: 18px;
+}
+
+.showingLast {
+    color: #9c9ea6;
+    font-size: 12px;
+}
+
+@media (max-width: 992px) {
+    .showingHiddenOnMobile {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        justify-content: center;
+    }
+    .MobileWithShowing {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 10px;
+        padding-right: 16px;
+    }
+
+    .select span {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .pagination {
+        padding: 12px 0;
+        justify-content: flex-start;
+        padding-left: 16px;
+    }
+}

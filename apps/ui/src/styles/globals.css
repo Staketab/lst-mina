@@ -1,0 +1,283 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--ff--inter-regular);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 133%;
+    color: var(--col--dark);
+    background-color: var(--col--light);
+}
+
+* {
+    box-sizing: border-box !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+#root {
+    height: 100vh;
+}
+
+#main {
+    max-width: var(--desktop-width);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#main footer {
+    margin-top: auto;
+}
+
+.sticky-top {
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.web-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 85px;
+    background-color: var(--col--dark);
+    color: white;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.richText > * {
+    list-style: none;
+    padding: 0px;
+}
+
+.menu-item-subcategory {
+    color: var(--col--primary1);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+/** Typography */
+
+p {
+    margin: 0;
+}
+
+/** Lists */
+ul {
+    list-style: none;
+}
+
+ul li {
+    position: relative;
+    padding-left: 1em;
+}
+
+ul li::before {
+    content: '\2022';
+    color: var(--col--primary1);
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    position: absolute;
+    left: 0;
+    width: 1em;
+}
+
+ol {
+    list-style: none;
+    counter-reset: li;
+}
+
+ol li {
+    counter-increment: li;
+    position: relative;
+    padding-left: 1em;
+}
+
+ol li::before {
+    content: counter(li);
+    color: var(--col--primary1);
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    position: absolute;
+    left: 0;
+    width: 1em;
+}
+
+ul li,
+ol li {
+    font-size: var(--li-md-size, 16px);
+    line-height: var(--li-md-line-height, 24px);
+}
+
+@media screen and (min-width: 960px) {
+    ul li,
+    ol li {
+        font-size: var(--li-lg-size, 18px);
+        line-height: var(--li-lf-line-height, 28px);
+    }
+}
+
+/** Links */
+
+.link-secondary-active,
+.link-primary-active {
+    font-family: var(--ff--link);
+    font-style: normal;
+    font-weight: normal;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.link-secondary-active {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.link-primary-active {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+@media screen and (max-width: 960px) {
+    .link-primary-active {
+        font-size: 14px;
+        line-height: 18px;
+    }
+}
+
+/* Truncate */
+
+/* single line */
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* multi line */
+.truncate-at-2,
+.truncate-at-3,
+.truncate-at-4,
+.truncate-at-5 {
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.truncate-at-2 {
+    -webkit-line-clamp: 2;
+}
+
+.truncate-at-3 {
+    -webkit-line-clamp: 3;
+}
+
+.truncate-at-4 {
+    -webkit-line-clamp: 4;
+}
+
+.truncate-at-5 {
+    -webkit-line-clamp: 5;
+}
+
+_:-ms-fullscreen,
+:root .truncate-at-2,
+.truncate-at-3,
+.truncate-at-4,
+.truncate-at-5 {
+    white-space: nowrap;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0 16px;
+        max-width: 575px;
+    }
+}
+
+@media (min-width: 577px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 769px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 993px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1201px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1401px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+.app {
+    max-width: var(--desktop-width);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: var(--app-height);
+}

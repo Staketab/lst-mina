@@ -1,0 +1,68 @@
+/* desktop */
+.t-inter-regular {
+    font-family: var(--ff--inter-regular);
+    font-size: 14px;
+    line-height: 133%;
+    font-weight: 400;
+    color: var(--col--dark);
+}
+
+.t-inter-medium {
+    font-family: var(--ff--inter-medium);
+    font-size: 14px;
+    line-height: 133%;
+    font-weight: 500;
+    color: var(--col--dark);
+}
+
+.t-inter-semi-bold {
+    font-family: var(--ff--inter-semi-bold);
+    font-size: 14px;
+    line-height: 133%;
+    font-weight: 600;
+    color: var(--col--dark);
+}
+
+.t-inter-bold {
+    font-family: var(--ff--inter-bold);
+    font-size: 14px;
+    line-height: 133%;
+    font-weight: 700;
+    color: var(--col--dark);
+}
+
+.t-link {
+    color: var(--col--link);
+}
+
+.t-robot-regular {
+    font-family: var(--ff--robot-regular);
+    font-size: 14px;
+    line-height: 133%;
+    font-weight: 400;
+    color: var(--col--dark);
+}
+
+.t-robot-medium {
+    font-family: var(--ff--robot-medium);
+    font-size: 14px;
+    line-height: 133%;
+    font-weight: 500;
+    color: var(--col--dark);
+}
+
+.t-robot-semi-bold {
+    font-family: var(--ff--robot-semi-bold);
+    font-size: 14px;
+    line-height: 133%;
+    font-weight: 600;
+    color: var(--col--dark);
+}
+
+.t-robot-bold {
+    font-family: var(--ff--robot-bold);
+    font-size: 14px;
+    line-height: 133%;
+    font-weight: 700;
+    color: var(--col--dark);
+}

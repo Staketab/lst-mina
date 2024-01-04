@@ -1,0 +1,48 @@
+.buttonWithAddress > div {
+    display: flex;
+    gap: 4px;
+}
+.auroIcon {
+    width: 22px;
+    height: 22px;
+}
+
+.connectbutton {
+    display: inline-flex;
+    align-items: center;
+    color: #809dff;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 3px 8px;
+    gap: 4px;
+    border-radius: 5px;
+}
+
+.connectbutton:hover {
+    background-color: #f6f7fa;
+}
+
+.plate {
+    position: relative;
+}
+
+.item {
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all ease 200ms;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 18px;
+}
+
+.item .icon {
+    fill: rgba(0, 0, 0, 0.8);
+    width: 20px;
+    height: 20px;
+}
+
+.item:hover {
+    background-color: #f9f9f9;
+}

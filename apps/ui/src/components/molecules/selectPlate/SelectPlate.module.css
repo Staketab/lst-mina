@@ -1,0 +1,81 @@
+.selectPlate {
+	width: max-content;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	padding: 4px 12px;
+	user-select: none;
+	background-color: #f0f1f5;
+	border: 2px solid transparent;
+	border-radius: 7px;
+	transition: all ease 200ms;
+  }
+  
+  .selectPlate * {
+	transition: all ease 200ms;
+  }
+  
+  .selectPlate > * {
+	margin-right: 6px;
+  }
+  
+  .selectPlate > *:last-child {
+	margin-right: 0;
+  }
+  
+  .selectTitle {
+	font-weight: 600;
+	color: rgba(0, 0, 0, 0.8);
+	line-height: 24px;
+	text-transform: capitalize;
+	white-space: nowrap;
+  }
+  
+  .selectCount {
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.8);
+	line-height: 16px;
+	text-align: center;
+	padding: 2px 8px;
+	border-radius: 30px;
+	background-color: #fff;
+  }
+  
+  .selectClear {
+	display: flex;
+	align-items: center;
+	transition: all ease 200ms;
+  }
+  
+  .selectClear:hover {
+	transform: scale(1.2);
+  }
+  
+  .arrow {
+	fill: rgba(0, 0, 0, 0.8);
+	transform: rotateX(180deg);
+  }
+  
+  .arrowDisabled {
+	fill: rgba(0, 0, 0, 0.4);
+  }
+  
+  .expanded {
+	border: 2px solid #ebebf0;
+  }
+  
+  .active {
+	border: 2px solid #e3e8fd;
+	background-color: #eef1ff;
+  }
+  
+  .active span {
+	color: #3e66ec;
+  }
+  
+  .active svg {
+	fill: #3e66ec;
+  }
+  
+  

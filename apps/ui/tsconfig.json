@@ -1,0 +1,27 @@
+{
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    },
+    "compilerOptions": {
+        "target": "es2017",
+        "lib": ["dom", "dom.iterable", "esnext", "es2019.array"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "strictNullChecks": false,
+        "incremental": true
+    },
+    "exclude": ["node_modules"],
+    "include": ["@types/**/*.d.ts", "**/*.ts", "**/*.tsx", "src/configs/env.js"]
+}
