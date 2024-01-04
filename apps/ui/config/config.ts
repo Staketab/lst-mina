@@ -14,7 +14,7 @@ export const getConfig = (): {
             };
         default:
             return {
-                graphql: 'https://score.minascan.io',
+                graphql: 'https://t-score.minascan.io',
             };
     }
 };
