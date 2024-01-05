@@ -55,13 +55,7 @@ const ImgSuspense = ({
             />
             {((!isLoaded && fallback) || !isLoaded || isLoading) && (
                 <div className={styles.loader} style={loaderStyle ?? { width: '42px', height: '42px' }}>
-                    <Image
-                        src={loader}
-                        alt="preloader"
-                        style={{ width: '42px', height: '32px' }}
-                        width={32}
-                        height={32}
-                    />
+                    <Image src={loader} alt="preloader" width={32} height={32} />
                 </div>
             )}
         </>

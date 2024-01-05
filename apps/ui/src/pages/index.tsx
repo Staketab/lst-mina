@@ -30,6 +30,8 @@ export default function Home(): JSX.Element {
     useObserveBalance();
     usePollBlockHeight();
 
+    const isStakeAvailable = activTab === tabSwitcherOptions[1];
+
     useEffect(() => {
         if (window.localStorage.getItem('isConnectedAuro') === 'true') {
             initAccount();
@@ -45,7 +47,7 @@ export default function Home(): JSX.Element {
                 <link rel="icon" href="/assets/favicon.ico" />
             </Head>
             <div className={styles.content}>
-                <PageHeader />
+                <PageHeader isStakeAvailable={isStakeAvailable} />
                 <Header title="Leaderboard" />
                 <TabSwitcher options={tabSwitcherOptions} onClick={handleTabSwitcher} />
                 <LeaderboardTables activeTab={activTab} />

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import style from './index.module.css';
@@ -24,8 +24,9 @@ const ConnectWalletButton = ({ handleAddress }: { handleAddress: (value: boolean
     };
 
     const address = accountId?.[0];
-
-    handleAddress(!address);
+    useEffect(() => {
+        handleAddress(!address);
+    });
 
     const handleConnect = () => {
         setShowPopup(true);
