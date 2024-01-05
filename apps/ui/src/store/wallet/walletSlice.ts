@@ -42,7 +42,7 @@ export const walletSlice = createSlice({
             };
         },
         addPendingTransaction: (state, action: PayloadAction<PendingTransactions>) => {
-            state.pendingTransactions.push(action.payload);
+            state.pendingTransactions?.push(action.payload);
         },
         removePendingTransaction: (state, action: PayloadAction<PendingTransactions>) => {
             state.pendingTransactions = state.pendingTransactions.filter((tx) => {

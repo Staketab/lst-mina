@@ -10,7 +10,7 @@ import style from './index.module.css';
 import { formatNum } from '../../../comman/helpers';
 import { useBalances } from '../../../store/hooks/useBalances';
 
-const PageHeader = () => {
+const PageHeader = ({ isStakeAvailable }: { isStakeAvailable: boolean }): JSX.Element => {
     const [openStakeModul, setOpenStaekeModul] = useState<boolean>(false);
     const [isDisableStakeButton, setIsDisableStakeButton] = useState<boolean>(true);
     const { accountId, balance: balanceByWallet } = useWallet();
@@ -32,7 +32,7 @@ const PageHeader = () => {
                 text="Stake"
                 variant={Variant.blue}
                 onClick={() => setOpenStaekeModul(true)}
-                disabled={isDisableStakeButton}
+                disabled={isDisableStakeButton || !isStakeAvailable}
             />
             <StakeModalController open={openStakeModul} closeModal={() => setOpenStaekeModul(false)} />
         </div>
