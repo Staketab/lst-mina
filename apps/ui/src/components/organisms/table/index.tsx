@@ -19,10 +19,10 @@ type TableProps = {
     totalElements: number;
     pagesCount: number;
     limitOptions?: LimitOptions;
-    onPageChange: (value: number) => void;
-    onLimitChange: (value: number) => void;
-    onSortChange?: (value: string) => void;
-    onOrderChange?: (value: string) => void;
+    onChangePage: (value: number) => void;
+    onChangeLimit: (value: number) => void;
+    onChangeSort?: (value: string) => void;
+    onChangeOrder?: (value: string) => void;
 };
 
 const Table = ({
@@ -35,12 +35,12 @@ const Table = ({
     pageLimit = 50,
     totalElements = data?.length ?? 0,
     limitOptions,
-    onPageChange,
-    onLimitChange,
+    onChangePage,
+    onChangeLimit,
     sortBy,
     orderBy,
-    onSortChange,
-    onOrderChange,
+    onChangeSort,
+    onChangeOrder,
 }: TableProps): JSX.Element => {
     const wrapperRef = useRef(null);
 
@@ -66,8 +66,8 @@ const Table = ({
                 pagesCount={pagesCount}
                 pageLimit={pageLimit}
                 totalElements={totalElements}
-                onPageChange={onPageChange}
-                onLimitChange={onLimitChange}
+                onChangePage={onChangePage}
+                onChangeLimit={onChangeLimit}
                 isLoading={isLoading}
                 limitOptions={limitOptions}
                 offset={offset}
@@ -90,18 +90,16 @@ const Table = ({
                             ref={wrapperRef}
                             style={{ gridTemplateColumns: generateTemplateColumn(config) }}
                         >
-                            {
-                                <TableHeader
-                                    config={config}
-                                    hidePagination
-                                    isLoading={isLoading}
-                                    sortBy={sortBy}
-                                    orderBy={orderBy}
-                                    onSortChange={onSortChange}
-                                    onOrderChange={onOrderChange}
-                                    isHiddenBorderBottom={showErrorMessage}
-                                />
-                            }
+                            <TableHeader
+                                config={config}
+                                hidePagination
+                                isLoading={isLoading}
+                                sortBy={sortBy}
+                                orderBy={orderBy}
+                                onSortChange={onChangeSort}
+                                onOrderChange={onChangeOrder}
+                                isHiddenBorderBottom={showErrorMessage}
+                            />
                             {!isLoading && <TableBody data={data} config={config} currentPage={currentPage} />}
                         </div>
                     </div>

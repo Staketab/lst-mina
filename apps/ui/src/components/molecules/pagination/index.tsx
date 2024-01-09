@@ -9,13 +9,18 @@ type PaginationProps = {
     pagesCount: number;
     pageLimit: number;
     totalElements: number;
-    onPageChange: (value: number | string) => void;
-    onLimitChange: (value: number) => void;
+    onChangePage: (value: number | string) => void;
+    onChangeLimit: (value: number) => void;
     isLoading: boolean;
     offset?: number;
     limitOptions?: LimitOptions;
 };
 
+const initLimitOptions = [
+    { text: '50', value: 50 },
+    { text: '100', value: 100 },
+    { text: '200', value: 200 },
+];
 const Pagination = ({
     currentPage,
     pageLimit,
@@ -24,8 +29,8 @@ const Pagination = ({
     pagesCount,
     isLoading,
     limitOptions,
-    onPageChange,
-    onLimitChange,
+    onChangePage,
+    onChangeLimit,
 }: PaginationProps) => {
     const nextOffset = pageLimit * (currentPage + 1);
 
@@ -38,24 +43,15 @@ const Pagination = ({
                 </p>
             </div>
             <div className={style.pager}>
-                <Pager page={currentPage + 1} count={pagesCount} onChange={(page) => onPageChange(page)} />
+                <Pager page={currentPage + 1} count={pagesCount} onChange={(page) => onChangePage(page)} />
             </div>
             <div className={style.select}>
                 <span>Show</span>
                 <SingleSelect
-                    options={
-                        limitOptions ?? [
-                            { text: '50', value: 50 },
-                            { text: '100', value: 100 },
-                            { text: '200', value: 200 },
-                        ]
-                    }
+                    options={limitOptions ?? initLimitOptions}
                     initValue={pageLimit}
-                    onChange={onLimitChange}
+                    onChange={onChangeLimit}
                     disable={isLoading}
-                    notActive
-                    minWidth="100%"
-                    btnHeight="32px"
                 />
             </div>
         </div>

@@ -90,16 +90,16 @@ const LeaderboardTables = ({ activeTab }: LeaderboardTablesProps): JSX.Element =
             orderBy={orderBy}
             totalElements={tableData?.totalElements}
             pagesCount={tableData?.totalPages}
-            onPageChange={(data) => {
+            onChangePage={(data) => {
                 setPage(data);
             }}
-            onLimitChange={(data) => {
+            onChangeLimit={(data) => {
                 setLimit(data);
             }}
-            onOrderChange={(data) => {
+            onChangeOrder={(data) => {
                 setOrderBy(data);
             }}
-            onSortChange={(data) => {
+            onChangeSort={(data) => {
                 setSortBy(data);
             }}
             limitOptions={limitOptions}

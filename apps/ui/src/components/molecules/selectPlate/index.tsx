@@ -4,24 +4,16 @@ import ArrowIcon from './img/Arrow.svg';
 import classNames from 'classnames';
 import Image from 'next/image';
 
-const SelectPlate = ({
-    clickHandler,
-    expanded,
-    title,
-    selectedCount = 0,
-    isActive,
-    disable,
-    minWidth = '0px',
-    height,
-}) => {
-    const active = selectedCount > 0 || isActive;
+type SelectPlateProps = {
+    onClick: () => void;
+    expanded: boolean;
+    title: string;
+    disable: boolean;
+};
 
+const SelectPlate = ({ onClick, expanded, title, disable }: SelectPlateProps): JSX.Element => {
     return (
-        <div
-            className={classNames(style.selectPlate, expanded && style.expanded, active && style.active)}
-            style={{ minWidth, height }}
-            onClick={!disable ? clickHandler : null}
-        >
+        <div className={classNames(style.selectPlate, expanded && style.expanded)} onClick={!disable ? onClick : null}>
             <span className={classNames('t-inter-semi-bold', style.selectTitle)}>{title}</span>
             <Image
                 src={ArrowIcon}

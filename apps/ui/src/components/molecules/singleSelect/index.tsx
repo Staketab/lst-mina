@@ -12,11 +12,7 @@ type SingleSelectProps = {
     selectTitle?: string;
     onChange: (value: any) => void;
     initValue?: number;
-    notActive?: boolean;
     disable?: boolean;
-    minWidth?: string;
-    maxHeight?: string;
-    btnHeight?: string;
     className?: string;
 };
 
@@ -25,14 +21,10 @@ const SingleSelect = ({
     selectTitle = '',
     onChange,
     initValue,
-    notActive,
     disable,
-    minWidth,
-    maxHeight,
-    btnHeight,
     className,
 }: SingleSelectProps): JSX.Element => {
-    const [selected, setSelected] = useState<any>(initValue);
+    const [selected, setSelected] = useState<number>(initValue);
     const [expanded, setExpanded] = useState(false);
     const ref = useRef();
     const media = useMedia(0);
@@ -61,27 +53,17 @@ const SingleSelect = ({
     return (
         <div className={classNames(style.singleSelect, className)} ref={ref}>
             <SelectPlate
-                clickHandler={() => setExpanded(!expanded)}
+                onClick={() => setExpanded(!expanded)}
                 expanded={expanded}
                 title={findTextByValue(selected) || selectTitle}
-                isActive={notActive !== null && notActive !== undefined ? !notActive : findTextByValue(selected)}
                 disable={disable}
-                minWidth={minWidth}
-                height={btnHeight}
             />
-            <DropdownWrapper
-                maxHeight={maxHeight ?? '160px'}
-                minWidth={minWidth ?? '150px'}
-                className={style.dropdown}
-                onClose={() => setExpanded(false)}
-                show={expanded}
-                parentRef={ref}
-            >
-                <CustomScrollList maxHeight={maxHeight ?? '160px'} style={{ display: 'block' }}>
+            <DropdownWrapper className={style.dropdown} onClose={() => setExpanded(false)} show={expanded}>
+                <CustomScrollList>
                     {options?.map((el) => (
                         <div
                             key={el.value}
-                            className={style.item}
+                            className={classNames(style.item, 't-inter-regular')}
                             onClick={() => {
                                 clickHandler(el.value);
                             }}

@@ -2,7 +2,7 @@ import { SORT_BY, TableConfig } from '../types';
 
 export const ScoringConfig: TableConfig[] = [
     {
-        colName: 'stake',
+        colName: 'validator',
         headerText: 'Validator',
         columnTemplate: 'accountTemplate',
         fields: {

@@ -13,19 +13,18 @@ const TableBody = ({ data, config, currentPage }: TableBodyProps): JSX.Element =
 
     return (
         <>
-            {data && Object.entries(data).length < 1
-                ? null
-                : data?.map((row, i) => (
-                      <TableRow
-                          key={i + currentPage}
-                          index={i}
-                          currentPage={currentPage}
-                          rowData={row}
-                          config={config}
-                          hoveredRow={hoveredRow}
-                          setHoveredRow={setHoveredRow}
-                      />
-                  ))}
+            {!(data && Object.entries(data).length < 1) &&
+                data?.map((row, i) => (
+                    <TableRow
+                        key={i + currentPage}
+                        index={i}
+                        currentPage={currentPage}
+                        rowData={row}
+                        config={config}
+                        hoveredRow={hoveredRow}
+                        setHoveredRow={setHoveredRow}
+                    />
+                ))}
         </>
     );
 };

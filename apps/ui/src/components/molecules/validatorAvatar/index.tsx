@@ -27,7 +27,7 @@ const ValidatorAvatar = ({
     isCoinTable,
     isLoading,
 }: ValidatorAvatarProps): JSX.Element => {
-    const width = Number(propsWidth);
+    const width = Number(parseFloat(propsWidth));
     const iconsOffset = Number(width) >= 20 ? 8 : 6;
     const isAvatar = (avatar && !isEmpty(avatar)) || (square && avatar !== undefined) || isLoading;
     const [isErrorFirst, setIsErrorFirst] = useState(false);
@@ -53,7 +53,7 @@ const ValidatorAvatar = ({
         >
             <div
                 style={{
-                    width: width,
+                    width: `${width}px`,
                     height: height,
                 }}
                 className={classNames(style.iconFirst, className)}

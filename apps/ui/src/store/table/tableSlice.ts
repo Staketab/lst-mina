@@ -19,7 +19,7 @@ const initialState: ITableData = {
         totalElements: 0,
         totalPages: 0,
     },
-    status: DATA_STATUS.INITIAL,
+    status: DATA_STATUS.LOADING,
 };
 
 export const tableSlice = createSlice({

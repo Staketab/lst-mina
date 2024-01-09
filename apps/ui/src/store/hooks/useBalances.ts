@@ -35,12 +35,15 @@ export const useBalances = (): IUseBalances => {
     const balances = useSelector<RootState, BalancesStore.IBalanceData>((state) => state.balances);
 
     const loadBalance = async (client, address) => {
-        const balances = await client.query.runtime.Balances.balances.get(PublicKey.fromBase58(address));
-
-        setLstBalance({
-            ...balances,
-            [address]: balances?.toString() ?? '0',
-        });
+        try {
+            const balances = await client?.query?.runtime.Balances.balances.get(PublicKey.fromBase58(address));
+            setLstBalance({
+                ...balances,
+                [address]: balances?.toString() ?? '0',
+            });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const faucet = async (

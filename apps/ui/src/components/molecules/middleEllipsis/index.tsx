@@ -129,7 +129,7 @@ const MiddleEllipsisCustom = ({
     }, []);
 
     useEffect(() => {
-        if (fontSize) {
+        if (fontSize && width) {
             const widthSymbol = fontSize.replace(/[^0-9]/g, '') * 0.6;
             setStartAndEnd(Math.floor(width / widthSymbol / 2));
         }
