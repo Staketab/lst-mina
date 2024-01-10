@@ -149,7 +149,7 @@ export default function useWallet(): IUseGlobal {
         }, 200);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [minaAdapter.requestNetwork]);
+    }, [minaAdapter?.requestNetwork]);
 
     return {
         ...walletData,
