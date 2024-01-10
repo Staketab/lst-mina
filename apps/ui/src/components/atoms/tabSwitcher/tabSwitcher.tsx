@@ -5,7 +5,6 @@ import styles from './index.module.css';
 import { TabSwitcherOptions } from '../../../comman/types';
 
 type TabSwitcher = {
-    initialValue?: string;
     options: TabSwitcherOptions;
     onClick: (value: string) => void;
 };

@@ -1,8 +1,8 @@
-import React, { Ref, useEffect, useState } from 'react';
+import React, { ReactNode, Ref, useEffect, useState } from 'react';
 import FloatingTooltip from '../floatingTooltip';
 type TooltipWrapperProps = {
     children: React.ReactNode;
-    tooltipText?: string;
+    tooltipText?: string | ReactNode;
     controlRef?: Ref<HTMLElement>;
     isLoading?: boolean;
     noCloseOnClickInside?: boolean;

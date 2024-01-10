@@ -77,7 +77,7 @@ export default function AccountName({ className, pk, name, img, noRedirect, redi
                                     fontWeight: 500,
                                 }}
                             >
-                                {<TruncateText>{name}</TruncateText>}
+                                <TruncateText>{name}</TruncateText>
                             </span>
                         ) : (
                             <Link
@@ -88,7 +88,7 @@ export default function AccountName({ className, pk, name, img, noRedirect, redi
                                     fontWeight: 500,
                                 }}
                             >
-                                {<TruncateText>{name}</TruncateText>}
+                                <TruncateText>{name}</TruncateText>
                             </Link>
                         )}
                     </div>

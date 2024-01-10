@@ -6,12 +6,10 @@ import classNames from 'classnames';
 import Image from 'next/image';
 
 const TableErrorMessage = () => {
-    const errorTitle = 'There is no data yet';
-    const icon = <Image src={noDataIcon} alt="" />;
     return (
         <div className={classNames(styles.errorScreen, 'container')}>
-            {icon}
-            <p className={classNames(styles.errorTitle)}>{errorTitle}</p>
+            <Image src={noDataIcon} alt="" />
+            <p className={styles.errorTitle}>There is no data yet</p>
         </div>
     );
 };

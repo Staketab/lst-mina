@@ -1,9 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, ReactNode } from 'react';
 import TooltipWrapper from '../tooltipWrapper';
 import styles from './index.module.css';
 
-export default function TruncateText(props) {
-    const { children, handleNameWidth, isTruncateText, style } = props;
+type TruncateTextProps = {
+    children: ReactNode;
+    handleNameWidth?: (value: number) => void;
+    isTruncateText?: boolean;
+};
+
+export default function TruncateText(props: TruncateTextProps): JSX.Element {
+    const { children, handleNameWidth, isTruncateText } = props;
     const textRef = useRef(null);
 
     const getStatusTruncateText = () => {
@@ -25,11 +31,7 @@ export default function TruncateText(props) {
 
     return (
         <TooltipWrapper tooltipText={tooltipText} controlRef={textRef}>
-            <div
-                style={{ ...style, maxWidth: width, marginBottom: 0 }}
-                ref={textRef}
-                className={styles.truncatedWrapper}
-            >
+            <div style={{ maxWidth: width, marginBottom: 0 }} ref={textRef} className={styles.truncatedWrapper}>
                 {children}
             </div>
         </TooltipWrapper>

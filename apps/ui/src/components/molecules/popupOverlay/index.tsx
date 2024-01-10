@@ -12,7 +12,6 @@ type PopupOverlayProps = {
     show?: boolean;
     animation?: 'slideUp' | 'appear';
     forwardedRef?: any;
-    zIndex?: number;
     height?: string;
 };
 
@@ -42,7 +41,6 @@ const PopupOverlay = ({
     show,
     animation = 'slideUp',
     forwardedRef,
-    zIndex = 50,
     height = 'auto',
 }: PopupOverlayProps): JSX.Element => {
     const location = useRouter();
@@ -150,7 +148,6 @@ const PopupOverlay = ({
                       ref={overlayRef}
                       onClick={handleClose}
                       onMouseUp={checkSelection}
-                      style={{ zIndex }}
                   >
                       <div
                           className={classNames(style.popupOverlay, style[position], {
