@@ -84,24 +84,22 @@ const Table = ({
             {config && (
                 <>
                     {renderPagination()}
-                    <div>
-                        <div
-                            className={style.table}
-                            ref={wrapperRef}
-                            style={{ gridTemplateColumns: generateTemplateColumn(config) }}
-                        >
-                            <TableHeader
-                                config={config}
-                                hidePagination
-                                isLoading={isLoading}
-                                sortBy={sortBy}
-                                orderBy={orderBy}
-                                onSortChange={onChangeSort}
-                                onOrderChange={onChangeOrder}
-                                isHiddenBorderBottom={showErrorMessage}
-                            />
-                            {!isLoading && <TableBody data={data} config={config} currentPage={currentPage} />}
-                        </div>
+                    <div
+                        className={style.table}
+                        ref={wrapperRef}
+                        style={{ gridTemplateColumns: generateTemplateColumn(config) }}
+                    >
+                        <TableHeader
+                            config={config}
+                            hidePagination
+                            isLoading={isLoading}
+                            sortBy={sortBy}
+                            orderBy={orderBy}
+                            onSortChange={onChangeSort}
+                            onOrderChange={onChangeOrder}
+                            isHiddenBorderBottom={showErrorMessage}
+                        />
+                        {!isLoading && <TableBody data={data} config={config} currentPage={currentPage} />}
                     </div>
                     {isLoading && (
                         <div className={style.loadingScreen}>

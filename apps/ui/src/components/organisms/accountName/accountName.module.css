@@ -1,3 +1,8 @@
+.wrapper {
+    width: 100%;
+    max-width: 100%;
+}
+
 .accountName {
     width: 100%;
     max-width: 100%;
@@ -22,7 +27,9 @@
     width: calc(98% - 22px);
     margin-left: 4px;
     color: rgba(0, 0, 0, 0.8);
+    cursor: default;
 }
+
 .name:hover {
     text-decoration: none;
     color: rgba(106, 144, 229, 0.87);

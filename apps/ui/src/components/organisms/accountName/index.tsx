@@ -58,36 +58,16 @@ export default function AccountName({ className, pk, name, img, noRedirect, redi
 
     return (
         <div className={classNames(styles.accountName, { [className]: className })} ref={ref}>
-            <div
-                className={styles.wrapper}
-                style={{
-                    width: '100%',
-                    maxWidth: '100%',
-                }}
-            >
+            <div className={styles.wrapper}>
                 {name === null || name === undefined ? null : (
                     <div className={styles.nameRow}>
                         <ValidatorAvatar avatar={img} width={'18px'} height={'18px'} />
                         {finalNoRedirect ? (
-                            <span
-                                className={classNames(styles.name, styles.nameNoRedirect)}
-                                style={{
-                                    cursor: 'default',
-                                    width: 'calc(98% - 22px)',
-                                    fontWeight: 500,
-                                }}
-                            >
+                            <span className={classNames(styles.name, styles.nameNoRedirect)}>
                                 <TruncateText>{name}</TruncateText>
                             </span>
                         ) : (
-                            <Link
-                                href={redirectLink}
-                                className={styles.name}
-                                style={{
-                                    width: 'calc(98% - 22px)',
-                                    fontWeight: 500,
-                                }}
-                            >
+                            <Link href={redirectLink} className={styles.name}>
                                 <TruncateText>{name}</TruncateText>
                             </Link>
                         )}

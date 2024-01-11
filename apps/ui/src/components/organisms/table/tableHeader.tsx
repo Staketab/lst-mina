@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Table.module.css';
+import styles from './Table.module.css';
 import classNames from 'classnames';
 import SortIcon from './img/SortIcon.svg';
 import Image from 'next/image';
@@ -20,15 +20,15 @@ const TableHeader = ({
     config,
     hidePagination,
     isLoading,
-    sortBy,
+    sortBy: sortByProps,
     orderBy,
     onSortChange,
     onOrderChange,
     isHiddenBorderBottom,
 }: TableHeaderProps): JSX.Element => {
-    const sortClickHandler = (sortName) => {
-        if (isLoading) return;
-        if (sortName === sortBy) {
+    const handleSort = (sortName) => {
+        if (isLoading && !sortName) return;
+        if (sortName === sortByProps) {
             return onOrderChange(orderBy === ORDER_BY.DESC ? ORDER_BY.ASC : ORDER_BY.DESC);
         }
         onSortChange(sortName);
@@ -37,42 +37,34 @@ const TableHeader = ({
 
     return (
         <>
-            {config.map((el) => {
-                const tabletWidth = el.style?.width;
+            {config.map(({ colName, style, headerText, sortBy }) => {
+                const tabletWidth = style?.width;
                 return (
                     <div
-                        key={el.colName}
-                        className={classNames('t-inter-semi-bold', style.cell, style.headerCell, {
-                            [style.borderHeader]: isHiddenBorderBottom,
+                        key={colName}
+                        className={classNames('t-inter-semi-bold', styles.cell, styles.headerCell, {
+                            [styles.borderHeader]: isHiddenBorderBottom,
                         })}
                         style={{
-                            cursor: el.sortBy && !isLoading ? 'pointer' : null,
+                            cursor: sortBy && !isLoading ? 'pointer' : null,
                             top: !hidePagination ? '68px' : '0',
-                            paddingTop: '0',
                             paddingLeft: '16px',
                         }}
                     >
                         <div
                             className={classNames(
                                 't-inter-semi-bold',
-                                style.headerCellContent,
-                                style.headerCellCapitalize,
-                                {
-                                    [style.headerCellNoTransform]:
-                                        typeof el?.headerText === 'string' && el?.headerText?.includes('zkApp'),
-                                }
+                                styles.headerCellContent,
+                                styles.headerCellCapitalize
                             )}
                             style={{
-                                minWidth: el.style?.minWidth,
-                                maxWidth: el.style?.maxWidth,
+                                minWidth: style?.minWidth,
+                                maxWidth: style?.maxWidth,
                                 width: tabletWidth,
-                                color: 'rgba(0,0,0,0.8)',
                             }}
                         >
-                            <span onClick={el.sortBy ? () => sortClickHandler(el.sortBy) : null}>
-                                {el.headerText ?? ''}
-                            </span>
-                            {el.sortBy && el.sortBy === sortBy && (
+                            <span onClick={() => handleSort(sortBy)}>{headerText}</span>
+                            {sortBy && sortBy === sortByProps && (
                                 <Image
                                     src={SortIcon}
                                     alt=""

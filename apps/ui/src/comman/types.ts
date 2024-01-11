@@ -1,6 +1,8 @@
+import { TableTemplates } from '../components/organisms/table/templates';
+
 export type TableConfig = {
     colName: string;
-    columnTemplate: string;
+    columnTemplate: TableTemplates;
     fields?: {
         value?: string;
         additionValue?: string;
