@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "deployAliases": {
+    "vitali": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/vitali.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/test10.json",
+      "feepayerAlias": "test10",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "test": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/test.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/test.json",
+      "feepayerAlias": "test",
+      "fee": "0.1"
+    },
+    "test1": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/test1.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/test1.json",
+      "feepayerAlias": "test1",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "vitalitest1": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/vitalitest1.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/vitalitest.json",
+      "feepayerAlias": "vitalitest",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "vitalitest2": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/vitalitest2.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/vitalitest2.json",
+      "feepayerAlias": "vitalitest2",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "vitalitesttoken": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/vitalitesttoken.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/testtoken.json",
+      "feepayerAlias": "testtoken",
+      "fee": "0.1",
+      "smartContract": "TokenContract"
+    },
+    "vitalitest3": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/vitalitest3.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/vitalitest3.json",
+      "feepayerAlias": "vitalitest3",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "vitalitest4": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/vitalitest4.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/vitalitest4.json",
+      "feepayerAlias": "vitalitest4",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "artbro": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/artbro.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/artbro.json",
+      "feepayerAlias": "artbro",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "artbro2": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/artbro2.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/artbro2.json",
+      "feepayerAlias": "artbro2",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "artbro3": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/artbro3.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/artbro3.json",
+      "feepayerAlias": "artbro3",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "artbrotest": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/artbrotest.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/artbrotest.json",
+      "feepayerAlias": "artbrotest",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "mytest": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/mytest.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/mytest.json",
+      "feepayerAlias": "mytest",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "test4": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/test4.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/test4.json",
+      "feepayerAlias": "test4",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "denchik": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/denchik.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/denchik.json",
+      "feepayerAlias": "denchik",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "vit_k": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/vit_k.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/vit_k.json",
+      "feepayerAlias": "vit_k",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "vittest": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/vittest.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/vittes.json",
+      "feepayerAlias": "vittes",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "base": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/base.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/base.json",
+      "feepayerAlias": "base",
+      "fee": "0.1",
+      "smartContract": "BasicTokenContract"
+    },
+    "token": {
+      "url": "https://api.minascan.io/node/berkeley/v1/graphql",
+      "keyPath": "keys/token.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/token.json",
+      "feepayerAlias": "token",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "testworld1": {
+      "url": "https://minascan.io/testworld-graphql",
+      "keyPath": "keys/testworld1.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/testworld1.json",
+      "feepayerAlias": "testworld1",
+      "fee": "0.1",
+      "smartContract": "Add"
+    },
+    "gavr1": {
+      "url": "https://minascan.io/testworld-graphql",
+      "keyPath": "keys/gavr1.json",
+      "feepayerKeyPath": "/Users/a7777/.cache/zkapp-cli/keys/gavr.json",
+      "feepayerAlias": "gavr",
+      "fee": "0.1",
+      "smartContract": "Add"
+    }
+  }
+}
