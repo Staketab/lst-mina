@@ -15,6 +15,8 @@ export type SendPaymentresponse = {
 
 export type OnSend = (amount: number, to: string, fee: number, memo: string) => Promise<SendPaymentresponse>;
 
+export const isConnectedAuro = 'isConnectedAuro';
+
 interface IUseGlobal extends WalletStore.IWalletData {
     actions: {
         setWalletData: (payload: WalletStore.IWalletData) => PayloadAction<WalletStore.IWalletData>;
@@ -38,7 +40,7 @@ interface IUseGlobal extends WalletStore.IWalletData {
 
 export default function useWallet(): IUseGlobal {
     const dispatch = useAppDispatch();
-    const [, setIsConnectedAuro] = useLocalStorage('isConnectedAuro');
+    const [, setIsConnectedAuro] = useLocalStorage(isConnectedAuro);
 
     const setWalletData = (payload: WalletStore.IWalletData) => dispatch(WalletStore.setWalletData(payload));
     const addPendingTransaction = (payload) => dispatch(WalletStore.addPendingTransaction(payload));

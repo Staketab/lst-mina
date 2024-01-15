@@ -9,6 +9,7 @@ import walletReducer from './wallet/walletSlice';
 import clientReducer from './client/clientSlice';
 import balancesReducer from './balances/balancesSlice';
 import chainReducer from './chain/chainSlice';
+import contractReducer from './contract/contractSlice';
 
 export const rootReducer = combineReducers({
     table: tableReducer,
@@ -16,6 +17,7 @@ export const rootReducer = combineReducers({
     client: clientReducer,
     balances: balancesReducer,
     chain: chainReducer,
+    contract: contractReducer,
     [tableService.reducerPath]: tableService.reducer,
     [walletService.reducerPath]: walletService.reducer,
     [chainService.reducerPath]: chainService.reducer,
