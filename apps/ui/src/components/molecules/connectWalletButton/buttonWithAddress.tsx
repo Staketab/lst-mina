@@ -6,7 +6,7 @@ import copy from './img/copy.svg';
 
 import style from './index.module.css';
 import DropdownWrapper from '../dropdownWrapper';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 import { Button } from '../../atoms/button';
 import { Variant } from '../../atoms/button/types';
@@ -16,19 +16,17 @@ const ButtonWithAddress = ({ address, onDisconnect }: { address: string; onDisco
     const handleCLick = () => {
         setIsShowDropdown(!isShowDropdown);
     };
-    const refTest = useRef();
 
     return (
         <>
             <Button className={style.buttonWithAddress} onClick={handleCLick} variant={Variant.blue}>
-                <div ref={refTest}>
+                <div>
                     <Image src={auroIcon} alt="" className={style.auroIcon} />
-                    <StaticEllipse text={address} view={{ sm: 7, md: 9, lg: 9 }} />
+                    <StaticEllipse text={address} view={{ sm: 7, md: 9, lg: 9 }} isActive />
                     <DropdownWrapper
                         className={style.dropdownWrapper}
                         show={isShowDropdown}
                         onClose={() => setIsShowDropdown(false)}
-                        parentRef={refTest}
                         minWidth="185px"
                     >
                         <div

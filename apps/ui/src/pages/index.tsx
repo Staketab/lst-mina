@@ -13,7 +13,7 @@ import { usePollBlockHeight } from '../hooks/usePollBlockHeight';
 import { POLLING_INTERVAL } from '../comman/constants';
 
 import styles from './index.module.css';
-import { useContract } from '../store/hooks/useContract';
+// import { useContract } from '../store/hooks/useContract';
 
 const tabSwitcherOptions: TabSwitcherOptions = ['Mainnet', 'Testworld'];
 
@@ -22,7 +22,7 @@ export default function Home(): JSX.Element {
     const client = useClient();
     const { accountId } = useWallet();
     useGetWalletBalanceQuery(accountId?.[0], { pollingInterval: POLLING_INTERVAL });
-    useContract();
+    // useContract();
     const handleTabSwitcher = (value: string) => {
         setActiveTab(value);
     };

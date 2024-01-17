@@ -7,6 +7,8 @@ import ValidatorAvatar from '../../molecules/validatorAvatar';
 import { CopyIcon } from '../../molecules/copyIcon';
 import { TruncateText } from '../../molecules/truncateText';
 import MiddleEllipsisCustom from '../../molecules/middleEllipsis';
+import { StaticEllipse } from '../../molecules/staticEllipse';
+import { View } from '../../../comman/types';
 
 type AccountNameProps = {
     className?: string;
@@ -17,38 +19,23 @@ type AccountNameProps = {
     getRedirectLink?: (value: string) => string;
     redirect?: string;
     needTabRedirect?: boolean;
+    view: View;
 };
-export default function AccountName({ className, pk, name, img, noRedirect, redirect }: AccountNameProps): JSX.Element {
+export default function AccountName({
+    className,
+    pk,
+    name,
+    img,
+    noRedirect,
+    redirect,
+    view,
+}: AccountNameProps): JSX.Element {
     const wrapperRef = useRef(null);
     const ref = useRef();
-    const offsetWidth = wrapperRef?.current?.offsetWidth;
-    const [width, setWidth] = useState<string | number>('100%');
     const { pathname } = useRouter();
 
-    const getWidth = (offsetWidth) => {
-        let arr = [];
-        if (wrapperRef.current?.children && Array.from(wrapperRef?.current?.children.length)) {
-            arr = Array.from(wrapperRef.current?.children).slice(1);
-        } else if (wrapperRef.current?.children) {
-            arr = Array.from(wrapperRef.current?.children);
-        }
-        const excessWidth = arr.reduce((acc, elem) => {
-            let result = acc;
-            return (result += elem?.offsetWidth);
-        }, 0);
-        setWidth(offsetWidth - excessWidth);
-    };
-
-    useEffect(() => {
-        getWidth(offsetWidth);
-    }, [offsetWidth]);
-
-    const ellipsis = ({ text, noRedirect }: { text?: string; noRedirect?: boolean }) => {
-        return (
-            <MiddleEllipsisCustom width={width} noRedirect={noRedirect} fontWeight={500} fontSize={'14px'}>
-                {text}
-            </MiddleEllipsisCustom>
-        );
+    const ellipsis = ({ text }: { text?: string; noRedirect?: boolean }) => {
+        return <StaticEllipse text={text} view={view} />;
     };
 
     const redirectLink = `/${redirect}`;

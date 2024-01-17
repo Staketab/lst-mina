@@ -1,5 +1,11 @@
 import { TableTemplates } from '../components/organisms/table/templates';
 
+export type View = {
+    sm: number;
+    md: number;
+    lg: number;
+};
+
 export type TableConfig = {
     colName: string;
     columnTemplate: TableTemplates;
@@ -18,11 +24,7 @@ export type TableConfig = {
     };
     sortBy?: SORT_BY;
     headerText?: string;
-    view?: {
-        sm: number;
-        md: number;
-        lg: number;
-    };
+    view?: View;
     style?: {
         noGrow?: boolean;
         width?: string;

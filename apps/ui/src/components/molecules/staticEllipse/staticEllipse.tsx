@@ -3,8 +3,9 @@ import { useMedia } from '../../../hooks';
 
 import style from './index.module.css';
 import classNames from 'classnames';
+import { View } from '../../../comman/types';
 
-const StaticEllipse = ({ text, view }) => {
+const StaticEllipse = ({ text, view, isActive }: { text: string; view: View; isActive?: boolean }): JSX.Element => {
     const [firstString, setFirstString] = useState(null);
     const [secondString, setSecondString] = useState(null);
     const [string, setString] = useState(null);
@@ -45,7 +46,11 @@ const StaticEllipse = ({ text, view }) => {
     if ((!firstString || !secondString || !text) && !string) return null;
 
     return (
-        <div className={classNames(style.wrapper, 't-robot-medium')}>
+        <div
+            className={classNames(style.wrapper, 't-robot-medium', {
+                [style.active]: isActive,
+            })}
+        >
             {string ? (
                 <div className={style.string}>{string}</div>
             ) : (

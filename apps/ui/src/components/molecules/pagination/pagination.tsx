@@ -1,7 +1,7 @@
 import React from 'react';
-import style from './Pagination.module.css';
-import Pager from '../pager';
+import style from './index.module.css';
 import { LimitOptions } from '../../../comman/types';
+import Pager from '../pager';
 import { SingleSelect } from '../singleSelect';
 
 type PaginationProps = {
@@ -12,27 +12,21 @@ type PaginationProps = {
     onChangePage: (value: number | string) => void;
     onChangeLimit: (value: number) => void;
     isLoading: boolean;
-    offset?: number;
     limitOptions?: LimitOptions;
 };
 
-const initLimitOptions = [
-    { text: '50', value: 50 },
-    { text: '100', value: 100 },
-    { text: '200', value: 200 },
-];
 const Pagination = ({
     currentPage,
     pageLimit,
     totalElements,
-    offset,
     pagesCount,
-    isLoading,
-    limitOptions,
     onChangePage,
+    limitOptions,
     onChangeLimit,
-}: PaginationProps) => {
+    isLoading,
+}: PaginationProps): JSX.Element => {
     const nextOffset = pageLimit * (currentPage + 1);
+    const offset = pageLimit * currentPage;
 
     return (
         <div className={style.pagination}>
@@ -48,7 +42,7 @@ const Pagination = ({
             <div className={style.select}>
                 <span>Show</span>
                 <SingleSelect
-                    options={limitOptions ?? initLimitOptions}
+                    options={limitOptions}
                     initValue={pageLimit}
                     onChange={onChangeLimit}
                     disable={isLoading}

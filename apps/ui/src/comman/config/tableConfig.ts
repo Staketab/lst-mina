@@ -12,6 +12,11 @@ export const ScoringConfig: TableConfig[] = [
             pk: 'pk',
             noRedirect: true,
         },
+        view: {
+            sm: 8,
+            md: 14,
+            lg: 14,
+        },
     },
     {
         colName: 'stake',
@@ -71,6 +76,11 @@ export const testWorldConfig: TableConfig[] = [
             img: 'img',
             pk: 'pk',
             noRedirect: true,
+        },
+        view: {
+            sm: 4,
+            md: 8,
+            lg: 12,
         },
     },
     {

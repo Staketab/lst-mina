@@ -1,0 +1,54 @@
+.wrapper {
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.table {
+    overflow: hidden;
+    overflow-x: scroll;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table tbody tr:hover {
+    background-color: rgb(250, 250, 252);
+    transition: all 0.3s;
+    min-width: 100px;
+}
+
+.table thead {
+    font-weight: bold;
+    border-top: 0.5px solid var(--col--gray8);
+    padding: 10px 0;
+}
+
+.table thead th {
+    text-align: start;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 0.5px solid var(--col--gray8);
+}
+
+.loadingScreen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.headerCellHover {
+    cursor: pointer;
+}
+
+.sortIcon {
+    margin-bottom: -4px;
+}

@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import Table from '../table';
+// import Table from '../table';
 import { DATA_STATUS, DataTable, ORDER_BY, SORT_BY } from '../../../comman/types';
 import { useTable } from '../../../hooks';
 import { ScoringConfig, testWorldConfig } from '../../../comman/config/tableConfig';
@@ -7,6 +7,7 @@ import { limitOptions } from './constants';
 import { NETWORK } from '../../../comman/constants';
 import { useGetTableDataQuery } from '../../../store/table/tableService';
 import useTableStore from '../../../store/hooks/useTable';
+import { Table } from '../../molecules/table';
 
 type LeaderboardTablesProps = {
     activeTab: string;
@@ -81,29 +82,53 @@ const LeaderboardTables = ({ activeTab }: LeaderboardTablesProps): JSX.Element =
 
     return (
         <Table
-            data={tableData?.data}
-            isLoading={table.status === DATA_STATUS.LOADING}
+            data={tableData}
             config={networkByTab?.config}
+            isLoading={table.status === DATA_STATUS.LOADING}
             currentPage={page}
             pageLimit={limit}
-            sortBy={sortBy}
-            orderBy={orderBy}
             totalElements={tableData?.totalElements}
             pagesCount={tableData?.totalPages}
+            limitOptions={limitOptions}
+            sortBy={sortBy}
+            orderBy={orderBy}
             onChangePage={(data) => {
                 setPage(data);
             }}
             onChangeLimit={(data) => {
                 setLimit(data);
             }}
-            onChangeOrder={(data) => {
-                setOrderBy(data);
-            }}
             onChangeSort={(data) => {
                 setSortBy(data);
             }}
-            limitOptions={limitOptions}
+            onChangeOrder={(data) => {
+                setOrderBy(data);
+            }}
         />
+        // <Table
+        //     data={tableData?.data}
+        //     isLoading={table.status === DATA_STATUS.LOADING}
+        //     config={networkByTab?.config}
+        //     currentPage={page}
+        //     pageLimit={limit}
+        //     sortBy={sortBy}
+        //     orderBy={orderBy}
+        //     totalElements={tableData?.totalElements}
+        //     pagesCount={tableData?.totalPages}
+        //     onChangePage={(data) => {
+        //         setPage(data);
+        //     }}
+        //     onChangeLimit={(data) => {
+        //         setLimit(data);
+        //     }}
+        //     onChangeOrder={(data) => {
+        //         setOrderBy(data);
+        //     }}
+        //     onChangeSort={(data) => {
+        //         setSortBy(data);
+        //     }}
+        //     limitOptions={limitOptions}
+        // />
     );
 };
 

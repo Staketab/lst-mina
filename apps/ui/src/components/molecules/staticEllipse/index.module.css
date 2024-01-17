@@ -1,15 +1,19 @@
 .wrapper {
     display: flex;
     align-items: center;
+    color: var(--link-inactive-color);
+}
+
+.active {
     color: var(--link-active-color);
 }
 
-.wrapper:hover {
-    color: #587EFC;
+.active:hover {
+    color: #587efc;
 }
 
-.wrapper:hover .dot {
-    background-color: #587EFC;
+.active:hover .dot {
+    background-color: #587efc;
 }
 
 .dots {
@@ -26,6 +30,10 @@
 .dot {
     width: 4px;
     height: 4px;
-    background-color: var(--link-active-color);
     border-radius: 50%;
+    background-color: var(--link-inactive-color);
+}
+
+.active .dot {
+    background-color: var(--link-active-color);
 }

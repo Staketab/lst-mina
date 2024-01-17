@@ -99,7 +99,9 @@ const Pager = ({ page, count = 1, onChange, pageNeighbours = 1 }: PagerProps): J
                 return (
                     <button
                         key={el}
-                        className={classNames('t-inter-medium', style.btn, page === el && style.active)}
+                        className={classNames('t-inter-medium', style.btn, {
+                            [style.active]: page === el,
+                        })}
                         onClick={() => changeHandler(el)}
                     >
                         {el}

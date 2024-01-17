@@ -19,6 +19,7 @@ body {
     --col--gray5: #f6f8fa;
     --col--gray6: rgba(43, 45, 51, 0.8);
     --col--gray7: rgba(43, 45, 51, 0.6);
+    --col--gray8: rgba(0,0,0,.05);
     /* rgba(150, 151, 153, 1) */
     --col--gray9: #969799;
     /* rgba(248, 250, 253, 1)*/
