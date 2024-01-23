@@ -74,7 +74,7 @@ const StakeModal = ({ modalsController, onStake, balance, openedModals }: StakeC
             backIcon={backIcon}
         >
             <div className={style.walletOperationsPopup}>
-                {isShowAlert && (
+                {!isShowAlert && (
                     <AlertMessage
                         variant={VariantsAlertMessage.WARNING}
                         text={`The active network on your wallet does not match the active network in the explorer. Switch the network to ${NETWORK} to proceed`}

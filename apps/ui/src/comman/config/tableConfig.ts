@@ -1,4 +1,4 @@
-import { TableTemplates } from '../../components/organisms/table/templates';
+import { TableTemplates } from '../../components/molecules/table/templates';
 import { SORT_BY, TableConfig } from '../types';
 
 export const ScoringConfig: TableConfig[] = [

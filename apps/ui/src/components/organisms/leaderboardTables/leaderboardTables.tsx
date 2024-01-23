@@ -105,30 +105,6 @@ const LeaderboardTables = ({ activeTab }: LeaderboardTablesProps): JSX.Element =
                 setOrderBy(data);
             }}
         />
-        // <Table
-        //     data={tableData?.data}
-        //     isLoading={table.status === DATA_STATUS.LOADING}
-        //     config={networkByTab?.config}
-        //     currentPage={page}
-        //     pageLimit={limit}
-        //     sortBy={sortBy}
-        //     orderBy={orderBy}
-        //     totalElements={tableData?.totalElements}
-        //     pagesCount={tableData?.totalPages}
-        //     onChangePage={(data) => {
-        //         setPage(data);
-        //     }}
-        //     onChangeLimit={(data) => {
-        //         setLimit(data);
-        //     }}
-        //     onChangeOrder={(data) => {
-        //         setOrderBy(data);
-        //     }}
-        //     onChangeSort={(data) => {
-        //         setSortBy(data);
-        //     }}
-        //     limitOptions={limitOptions}
-        // />
     );
 };
 

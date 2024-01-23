@@ -7,6 +7,7 @@ import getCell from './templates';
 import sortIcon from './img/SortIcon.svg';
 import classNames from 'classnames';
 import { ORDER_BY } from '../../../comman/types';
+import { TableErrorMessage } from '../../atoms/tableErrorMessage';
 
 const Table = ({
     data,
@@ -32,6 +33,8 @@ const Table = ({
         onChangeSort(sort);
         onChangeOrder(undefined);
     };
+    const showErrorMessage = !isLoading && (!data || data?.data?.length < 1 || !Object.values(data?.data)?.length);
+
     const renderPagination = () => {
         return (
             <Pagination
@@ -75,9 +78,9 @@ const Table = ({
                             ))}
                         </tr>
                     </thead>
-                    {!isLoading && (
+                    {!isLoading && !showErrorMessage && (
                         <tbody>
-                            {data?.data.map((item, index) => {
+                            {data?.data?.map((item, index) => {
                                 return (
                                     <tr key={index}>
                                         {configs.map((config, index) => {
@@ -90,6 +93,8 @@ const Table = ({
                     )}
                 </table>
             </div>
+            {showErrorMessage && <TableErrorMessage />}
+
             {isLoading ? (
                 <div className={style.loadingScreen}>
                     <Loader variant={LoaderVariant.CIRCLE} />

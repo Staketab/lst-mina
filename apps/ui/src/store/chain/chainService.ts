@@ -14,31 +14,33 @@ export const chainService = createApi({
                 method: 'POST',
                 body: {
                     query: `
-                      query GetBlock {
-                        block {
-                          txs {
-                            tx {
-                              argsFields
-                              argsJSON
-                              methodId
-                              nonce
-                              sender
-                              signature {
-                                r
-                                s
-                              }
-                            }
-                            status
-                            statusMessage
+                  query GetBlock {
+                    block {
+                      txs {
+                        tx {
+                          argsFields
+                          argsJSON
+                          methodId
+                          nonce
+                          sender
+                          signature {
+                            r
+                            s
                           }
                         }
-                        network {
-                          block {
-                            height
-                          }
+                        status
+                        statusMessage
+                      }
+                    }
+                    network {
+                      unproven {
+                        block {
+                          height
                         }
                       }
-                    `,
+                    }
+                  }
+                `,
                 },
             }),
         }),

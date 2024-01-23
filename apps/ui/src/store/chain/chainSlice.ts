@@ -19,7 +19,7 @@ const chainSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addMatcher(loadBlock.matchFulfilled, (state, { payload }) => {
-            state.height = payload.data.network.block.height;
+            state.height = payload.data.network.unproven.block.height;
             state.block = payload;
         });
     },

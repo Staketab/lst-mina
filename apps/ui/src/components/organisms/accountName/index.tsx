@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import styles from './accountName.module.css';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
@@ -6,7 +6,6 @@ import Link from 'next/link';
 import ValidatorAvatar from '../../molecules/validatorAvatar';
 import { CopyIcon } from '../../molecules/copyIcon';
 import { TruncateText } from '../../molecules/truncateText';
-import MiddleEllipsisCustom from '../../molecules/middleEllipsis';
 import { StaticEllipse } from '../../molecules/staticEllipse';
 import { View } from '../../../comman/types';
 
@@ -48,7 +47,7 @@ export default function AccountName({
             <div className={styles.wrapper}>
                 {name === null || name === undefined ? null : (
                     <div className={styles.nameRow}>
-                        <ValidatorAvatar avatar={img} width={'18px'} height={'18px'} />
+                        <ValidatorAvatar avatar={img} width="18px" height="18px" />
                         {finalNoRedirect ? (
                             <span className={classNames(styles.name, styles.nameNoRedirect)}>
                                 <TruncateText>{name}</TruncateText>

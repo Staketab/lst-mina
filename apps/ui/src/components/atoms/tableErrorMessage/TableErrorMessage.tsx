@@ -9,7 +9,7 @@ const TableErrorMessage = () => {
     return (
         <div className={classNames(styles.errorScreen, 'container')}>
             <Image src={noDataIcon} alt="" />
-            <p className={styles.errorTitle}>There is no data yet</p>
+            <p className={classNames(styles.errorTitle, 't-inter-semi-bold')}>There is no data yet</p>
         </div>
     );
 };
