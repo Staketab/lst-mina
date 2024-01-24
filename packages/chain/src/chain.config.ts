@@ -1,10 +1,12 @@
-import { ClientAppChain } from "@proto-kit/sdk";
+import { LocalhostAppChain } from "@proto-kit/cli";
 import runtime from "./runtime";
 import { UInt64 } from "o1js";
 
-const appChain = ClientAppChain.fromRuntime(runtime);
+const appChain = LocalhostAppChain.fromRuntime(runtime);
 
 appChain.configure({
+  ...appChain.config,
+
   Runtime: {
     Balances: {
       totalSupply: UInt64.from(10_000),
@@ -12,4 +14,4 @@ appChain.configure({
   },
 });
 
-export const client = appChain;
+export default appChain as any;

@@ -17,7 +17,6 @@ const ValidatorAvatar = ({ avatar }: ValidatorAvatarProps): JSX.Element => {
             alt=""
             width={18}
             height={18}
-            placeholder="blur"
             blurDataURL={blurHash}
         />
     );
